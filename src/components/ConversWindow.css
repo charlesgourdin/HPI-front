@@ -1,0 +1,24 @@
+.discFill{
+    width : 70%;
+    height: 80%;
+    border:1px black solid;
+    overflow: scroll;
+}
+
+.messageBloc {
+    color: cornsilk;
+    background-color: rgb(62, 62, 196);
+    padding: 8px ;
+    margin: 8px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.apiMessage{
+    font-size: 16px;
+}
+
+.apiUsername{
+    font-size: 10px;
+    line-height: 1px;
+}
