@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import ConversWindow from './ConversWindow';
-import PostMessage from './PostMessage';
+import ConversWindow from '../components/ConversWindow';
+import PostMessage from '../components/PostMessage';
 
 class ChatBox extends Component
 {

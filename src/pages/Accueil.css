@@ -1,0 +1,30 @@
+.accueilContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.accueilForm{
+    background-color: #1e66d9;
+    height: 200px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-box-shadow: 6px 8px 74px 2px rgba(0,0,0,0.48);
+    -moz-box-shadow: 6px 8px 74px 2px rgba(0,0,0,0.48);
+    box-shadow: 6px 8px 74px 2px rgba(0,0,0,0.48);
+}
+
+.accueilContainer h2{
+    margin-bottom: 64px;
+}
+
+.accueilForm h4 {
+    color: aliceblue;
+    margin: 12px;
+}
