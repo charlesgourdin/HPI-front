@@ -13,7 +13,7 @@ const Accueil = () => {
         <div className='accueilContainer'>
             <h2>Bienvenue sur SpeakUp</h2>
             <div className='accueilForm'>
-                <h4>Entrez un pseudo ou lancer la conversatione en anonyme</h4>
+                <p>Entrez un pseudo ou lancer la conversatione en anonyme</p>
                 <input
                     type='text'
                     id='user'
