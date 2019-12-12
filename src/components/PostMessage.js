@@ -21,13 +21,16 @@ const PostMessage = () => {
                         onChange={e => changeMsg(e.target.value)}
                         value={msg}
                     />
-                    <Button color="primary" size="sm" onClick={() => sendMessage(msg)}>Envoyer</Button>
+                    <Button color="primary" size="sm" onClick={() => {
+                        sendMessage(msg)
+                        changeMsg('')
+                    }}>Envoyer</Button>
                 </InputGroup>
             </div >
 
 
 
-        </div>
+        </div >
     )
 }
 
