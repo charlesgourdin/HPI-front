@@ -9,11 +9,17 @@ const ConversWindow = () => {
     return (
         <div className="discFill">
             {discussion.map((item, i) => {
-                return (<div className="messageBloc" key={i}
+                return (<div className="messageContainer" key={i}
                     style={{ float: user === item.user ? "right" : "left" }}
                 >
-                    <p className="apiusername">{item.user}</p>
-                    <p className="apiMessage">{item.message}</p>
+                    <p className="apiUsername"
+                        style={{ alignSelf: user === item.user ? "flex-end" : "flex-start" }}
+                    >{item.user}</p>
+                    <div className="messageBloc"
+                    style={{ backgroundColor: user === item.user ? "#6e6e6e" : "#236FFF" }}
+                    >
+                        <p className="apiMessage">{item.message}</p>
+                    </div>
                 </div>)
             })}
         </div>

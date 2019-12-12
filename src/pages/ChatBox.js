@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import ConversWindow from '../components/ConversWindow';
 import PostMessage from '../components/PostMessage';
+import './ChatBox.css'
 
-class ChatBox extends Component
-{
-    constructor(props)
-    {
+class ChatBox extends Component {
+    constructor(props) {
         super(props);
         this.state = {
         }
     }
 
-    render()
-    {
+    render() {
         return (
-            <div className='container'>
-                <ConversWindow username={this.state.username} />
-                <PostMessage username={this.state.username} />
+            <div className='chatBoxcontainer'>
+                <div className='chatWindow'>
+                    <ConversWindow username={this.state.username} />
+                    <PostMessage username={this.state.username} />
+                </div>
             </div>
         )
     }

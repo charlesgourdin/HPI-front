@@ -3,16 +3,6 @@
 /* font-family: 'Source Sans Pro', sans-serif;
 font-family: 'Roboto', sans-serif; */
 
-.container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
-
 h2{
   font-family: 'Source Sans Pro', sans-serif;
 }

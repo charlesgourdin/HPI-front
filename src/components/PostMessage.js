@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { SocketContext } from '../providers/SocketContext'
-import { Button } from 'reactstrap';
-import { InputGroup, Input } from 'reactstrap';
+import './PostMessage.css';
 
 const PostMessage = () => {
 
@@ -11,21 +10,19 @@ const PostMessage = () => {
 
 
     return (
-        <div>
-            <div>
-                <InputGroup >
-                    <Input
+        <div className='postMessageContainer'>
+            <div className='postMessageForm'>
+                    <textarea
                         type="text"
                         id="message"
                         name="message"
                         onChange={e => changeMsg(e.target.value)}
                         value={msg}
                     />
-                    <Button color="primary" size="sm" onClick={() => {
+                    <button color="primary" size="sm" onClick={() => {
                         sendMessage(msg)
                         changeMsg('')
-                    }}>Envoyer</Button>
-                </InputGroup>
+                    }}>Envoyer</button>
             </div >
 
 

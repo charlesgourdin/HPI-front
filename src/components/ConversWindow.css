@@ -1,16 +1,22 @@
 .discFill{
-    width : 70%;
-    height: 80%;
-    border:1px black solid;
-    overflow: scroll;
+    width : 100%;
+    height: 70%;
+    margin-top: 2%;
+    overflow-y: scroll;
+}
+
+.messageContainer{
+    width: 75%;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
 }
 
 .messageBloc {
-    color: cornsilk;
-    background-color: rgb(62, 62, 196);
+    color: white;
+    background-color: #6e6e6e;
     padding: 8px ;
-    margin: 8px;
-    width: 80%;
+    width: 100%;
     border-radius: 8px;
 }
 
@@ -19,6 +25,7 @@
 }
 
 .apiUsername{
-    font-size: 10px;
-    line-height: 1px;
+    align-self: flex-end;
+    font-size: 12px;
+    line-height: 0px;
 }
