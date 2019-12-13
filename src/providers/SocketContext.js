@@ -21,13 +21,13 @@ class SocketProvider extends Component {
     sendMessage = (message) => {
         console.log(message)
         const socket = socketIOClient(this.state.endpoint)
-        socket.emit('message', message)
+        socket.emit('message', {message: message, user: this.state.user})
     }
 
     componentDidMount = () => {
         const socket = socketIOClient(this.state.endpoint)
-        socket.on('message', (message) => {
-            this.setState({ discussion: [...this.state.discussion, { user: this.state.user, message: message }] })
+        socket.on('message', object => {
+            this.setState({ discussion: [...this.state.discussion, object] })
         })
     }
 
