@@ -6,7 +6,7 @@ class SocketProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "http://192.168.146.52:4001",
+            endpoint: "http://192.168.146.94:4001",
             user: 'anonyme',
             discussion: [],
             changeUsername: this.changeUsername,
@@ -19,15 +19,15 @@ class SocketProvider extends Component {
     }
 
     sendMessage = (message) => {
-        console.log(message)
         const socket = socketIOClient(this.state.endpoint)
-        socket.emit('message', {message: message, user: this.state.user})
+        if (message.length > 0) socket.emit('message', {message: message, user: this.state.user})
     }
 
     componentDidMount = () => {
         const socket = socketIOClient(this.state.endpoint)
         socket.on('message', object => {
             this.setState({ discussion: [...this.state.discussion, object] })
+                document.getElementById("to_autoscroll").scrollBy(0,10000)
         })
     }
 
