@@ -15,9 +15,7 @@ const ConversWindow = () => {
                     <p className="apiUsername"
                         style={{ alignSelf: user === item.user ? "flex-end" : "flex-start" }}
                     >{item.user}</p>
-                    <div className="messageBloc"
-                    style={{ backgroundColor: user === item.user ? "#6e6e6e" : "#236FFF" }}
-                    >
+                    <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                         <p className="apiMessage">{item.message}</p>
                     </div>
                 </div>)
