@@ -1,49 +1,27 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
+import { SocketContext } from '../providers/SocketContext'
 import './ConversWindow.css';
-import axios from 'axios';
 
-class ConversWindow extends Component
-{
-    constructor(props)
-    {
-        super(props)
-        this.state = {
-            data: []
-        }
-    }
+const ConversWindow = () => {
 
-    componentDidMount()
-    {
-        setInterval(() =>
-            // Send the request
-            axios.get('http://192.168.146.94:4000/api/tickets')
-                // Extract the DATA from the received response
-                .then(response => response.data)
-                // Use this data to update the state
-                .then(data =>
-                {
-                    //console.log(data.data)
-                    this.setState({
-                        data: data.data
-                    });
-                }), 500)
-    }
+    const { user, discussion } = useContext(SocketContext)
 
-    render()
-    {
-        const { data } = this.state
-        return (
-            <div className="discFill">
-                {data.map((item, i) =>
-                {
-                    return (<div className="messageBloc" key={i} style={{ float: this.props.username === item.username ? "right" : "left" }}>
-                        <p className="apiusername">{item.username}</p>
+    return (
+        <div className="discFill" id="to_autoscroll">
+            {discussion.map((item, i) => {
+                return (<div className="messageContainer" key={i}
+                    style={{ float: user === item.user ? "right" : "left" }}
+                >
+                    <p className="apiUsername"
+                        style={{ alignSelf: user === item.user ? "flex-end" : "flex-start" }}
+                    >{item.user}</p>
+                    <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                         <p className="apiMessage">{item.message}</p>
-                    </div>)
-                })}
-            </div>
-        )
-    }
+                    </div>
+                </div>)
+            })}
+        </div>
+    )
 }
 
 export default ConversWindow;
