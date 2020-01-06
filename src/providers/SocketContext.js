@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
+import conf from '../constants/conf.json';
 export const SocketContext = React.createContext();
 
 class SocketProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "http://192.168.146.94:4001",
+            endpoint: conf.endpoint,
             user: 'anonyme',
             discussion: [],
             changeUsername: this.changeUsername,
@@ -18,10 +19,14 @@ class SocketProvider extends Component {
         this.setState({ user: name })
     }
 
+    sendAlert = (e) => {
+        console.log(e);
+    }
+
     sendMessage = (message) => {
         const socket = socketIOClient(this.state.endpoint)
         if (message.length > 0) socket.emit('message', {message: message, user: this.state.user})
-    }
+    }   
 
     componentDidMount = () => {
         const socket = socketIOClient(this.state.endpoint)
