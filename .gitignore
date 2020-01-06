@@ -8,6 +8,7 @@
 # testing
 /coverage
 /src/constants/conf.json
+/src/constants/confC.json
 
 # production
 /build
