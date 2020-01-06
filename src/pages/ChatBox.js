@@ -9,7 +9,7 @@ class ChatBox extends Component {
         this.state = {
         }
     }
-
+    
     render() {
         return (
             <div className='chatBoxcontainer'>
