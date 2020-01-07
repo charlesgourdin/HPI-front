@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { SocketContext } from '../providers/SocketContext'
-import './PostMessage.css';
+import { MDBBtn } from 'mdbreact'
 
 const PostMessage = () => {
 
@@ -10,19 +10,26 @@ const PostMessage = () => {
 
 
     return (
-        <div className='postMessageContainer'>
-            <div className='postMessageForm'>
-                    <textarea
-                        type="text"
-                        id="message"
-                        name="message"
-                        onChange={e => changeMsg(e.target.value)}
-                        value={msg}
-                    />
-                    <button color="primary" size="sm" onClick={() => {
-                        sendMessage(msg)
-                        changeMsg('')
-                    }}>Envoyer</button>
+        <div className='w-auto mx-2 mt-3' style={{
+            height: '20%',
+            // border:'1px black solid'
+        }}>
+            <div className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'>
+                <textarea
+                    className='h-75 rounded-lg w-100'
+                    style={{
+                        border: '1px rgb(146, 146, 146) solid'
+                    }}
+                    type="text"
+                    id="message"
+                    name="message"
+                    onChange={e => changeMsg(e.target.value)}
+                    value={msg}
+                />
+                <MDBBtn color="primary" rounded onClick={() => {
+                    sendMessage(msg)
+                    changeMsg('')
+                }}>Envoyer</MDBBtn>
             </div >
 
 

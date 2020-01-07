@@ -15,10 +15,10 @@ class ChatBox extends Component {
 
     render() {
         return (
-            <div className='d-flex h-100 z-depth-2' style={{
+            <div className='d-flex flex-column justify-content-between align-items-center h-100 z-depth-2' style={{
                 borderRadius: '20px'
             }}>
-                <MDBRow className='w-100'>
+                <MDBRow className='w-100 h-100'>
                     <MDBCol >
                         <ConversWindow username={this.state.username} />
                         <PostMessage username={this.state.username} />

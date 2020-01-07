@@ -7,7 +7,7 @@ class SocketProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: "http://192.168.146.94:4000",
+            endpoint: "http://localhost:4001",
             user: 'anonyme',
             discussion: [],
             changeUsername: this.changeUsername,
