@@ -6,7 +6,6 @@ import { SocketContext } from '../providers/SocketContext'
 const Accueil = () => {
 
     const { changeUsername } = useContext(SocketContext)
-
     const [name, changeName] = useState('anonyme')
 
     return (
