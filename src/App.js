@@ -43,7 +43,10 @@ function App() {
   }
 
   return (
-    <div style={{ height: '100vh', minHeight:'500px' }}>
+    <div style={{
+      height: '100vh',
+      minHeight: '500px'
+    }}>
       <SocketProvider>
         <BrowserRouter>
           <Route exact path='/' component={Accueil} />
