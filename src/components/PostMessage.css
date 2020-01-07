@@ -23,7 +23,7 @@
 .postMessageForm button {
     align-self: flex-end;
     font-family: 'Roboto', sans-serif;
-    width: 30%;
+    width: 200px;
 	box-shadow:inset 0px -3px 7px 0px #236FFF;
 	background:linear-gradient(to bottom, #236FFF 5%, #236FFF 100%);
 	background-color:#236FFF;
