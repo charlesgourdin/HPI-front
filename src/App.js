@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import ChatBox from './pages/ChatBox';
+import ChatBox from './components/ChatBox';
 import Accueil from './pages/Accueil';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
@@ -26,12 +26,12 @@ function App() {
       const path = "/chat";
       return (
         <>
-          <Route exact path='/' component={Accueil}/>
-          <Route path={path} component={ChatBox}/>
+          <Route exact path='/' component={Accueil} />
+          <Route path={path} component={ChatBox} />
         </>
       )
     } else {
-      return ( 
+      return (
         <div className="accueilContainer">
           <div className="accueilForm">
             <p>Vous n'êtes pas autorisé à accèder à ce lien</p>
@@ -43,7 +43,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <SocketProvider>
         <BrowserRouter>
           <Route exact path='/' component={Accueil} />

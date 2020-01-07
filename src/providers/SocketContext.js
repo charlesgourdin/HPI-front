@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
-import conf from '../constants/conf.json';
+// import conf from '../constants/conf.json';
 export const SocketContext = React.createContext();
 
 class SocketProvider extends Component {
