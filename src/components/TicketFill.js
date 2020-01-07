@@ -37,7 +37,7 @@ const TicketFill = () => {
             borderRadius: '20px',
             backgroundColor: '#236FFF',
             padding: '10px',
-            height: '83%'
+            height: '85%'
         }}>
             <h2 style={{
                 textAlign: 'center',

@@ -5,17 +5,18 @@ import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBBt
 const StatusBloc = () => {
 
     const [status, setStatus] = useState({ status: 'Online', color: 'lightGreen' })
+    //Solution temporaire, à intégrer dans context pour récup DBB
 
     return (
-        <div className='z-depth-2 d-flex align-items-center pl-3' style={{
+        <div className='z-depth-2 d-flex align-items-center pl-4' style={{
             borderRadius: '20px',
             backgroundColor: '#236FFF',
             padding: '10px',
-            height: '15%'
+            height: '12%'
         }}>
             <img src={user} alt='user' style={{
                 filter: 'invert(100%)',
-                height: '60%'
+                height: '70%'
             }} />
             <div className='ml-2'>
                 <p className='m-1' style={{
