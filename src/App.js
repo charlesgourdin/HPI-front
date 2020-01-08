@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import ChatBox from './pages/ChatBox';
 import Accueil from './pages/Accueil';
+import FormEndCall from './pages/FormEndCall';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -27,6 +28,7 @@ function App() {
         <>
           <Route exact path='/' component={Accueil}/>
           <Route path={path} component={ChatBox}/>
+          <Route path='/form' component={FormEndCall}/>
         </>
       )
     } else {
