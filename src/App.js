@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Accueil from './pages/Accueil';
+import AccueilPsy from './pages/AccueilPsy';
+import AccueilCollab from './pages/AccueilCollab';
 import Psychologue from './pages/Psychologue';
 import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +27,7 @@ function App() {
       const path = "/collab";
       return (
         <>
-          <Route exact path='/' component={Accueil} />
+          <Route exact path='/id' component={AccueilCollab} />
           <Route path={path} component={Collaborateur} />
         </>
       )
@@ -50,10 +51,11 @@ function App() {
     }}>
       <SocketProvider>
         <BrowserRouter>
-          <Route exact path='/' component={Accueil} />
+          <Route exact path='/' component={AccueilPsy} />
+          <Route path='/id' component={AccueilCollab} />
           <Route path='/psy' component={Psychologue} />
           <Route path='/collab' component={Collaborateur} />
-          {url_test()}
+          {/* {url_test()} */}
         </BrowserRouter>
       </SocketProvider>
     </div>

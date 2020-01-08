@@ -1,0 +1,50 @@
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom'
+import { SocketContext } from '../providers/SocketContext'
+import { MDBCol } from 'mdbreact'
+
+const AccueilCollab = () => {
+
+    const { changeUsername } = useContext(SocketContext)
+    const [name, changeName] = useState('anonyme')
+
+    return (
+        <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+            <h2 style={{
+                marginBottom: '64px',
+                fontWeight: 'bold',
+                fontSize: '64px'
+            }}>
+                Bienvenue sur SpeakUp
+            </h2>
+            <MDBCol md='6' className='d-flex align-items-center'>
+                <form className='w-100 px-5 py-3 z-depth-4' style={{
+                    backgroundColor: '#034ACF',
+                    borderRadius: '20px'
+                }}>
+                    <p className='h5 text-center mb-4 white-text'>Entrez un pseudo ou lancer la conversation en anonyme</p>
+                    <label htmlFor='defaultFormLoginEmailEx' className='white-text'>
+                        Votre pseudo
+                  </label>
+                    <input type='text'
+                        id='user'
+                        name='user'
+                        onChange={e => changeName(e.target.value)}
+                        value={name}
+                        className='form-control' />
+                    <div className='text-center mt-4'>
+                        <Link to={'/collab'}><button
+                            className='btn btn-light'
+                            type='submit'
+                            style={{ width: '300px' }}
+                            onClick={() => changeUsername(name)}>
+                            Lancer la conversation
+                    </button></Link>
+                    </div>
+                </form>
+            </MDBCol>
+        </div>
+    )
+}
+
+export default AccueilCollab;
