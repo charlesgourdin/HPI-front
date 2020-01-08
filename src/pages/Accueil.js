@@ -8,6 +8,14 @@ const Accueil = () => {
     const { changeUsername } = useContext(SocketContext)
     const [name, changeName] = useState('anonyme')
 
+    // const handleKeyPress = (event) => {
+
+    //     event.preventDefault();
+    //     if (event.keyCode === 13) {
+    //         this.handleEnter();
+    //     }
+    // }
+
     return (
         <div className='accueilContainer'>
             <h2>Bienvenue sur SpeakUp</h2>
@@ -17,7 +25,9 @@ const Accueil = () => {
                     type='text'
                     id='user'
                     name='user'
-                    onChange={e => changeName(e.target.value)}
+                    onChange={e => {
+                        changeName(e.target.value)
+                    }}
                     value={name}
                 />
                 <Link to={'/collab'}><button onClick={() => changeUsername(name)}>Lancer la conversation</button></Link>

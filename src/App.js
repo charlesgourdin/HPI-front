@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Accueil from './pages/Accueil';
+import FormEndCall from './pages/FormEndCall';
 import Psychologue from './pages/Psychologue';
 import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,6 +28,7 @@ function App() {
       return (
         <>
           <Route exact path='/' component={Accueil} />
+          <Route path='/form' component={FormEndCall}/>
           <Route path={path} component={Collaborateur} />
         </>
       )
