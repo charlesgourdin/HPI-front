@@ -30,11 +30,7 @@ const Accueil = () => {
                     }}
                     value={name}
                 />
-                <Link to={'/chat'}>
-                    <button onClick={(name) => changeUsername(name)}>
-                        Lancer la conversation
-                    </button>
-                </Link>
+                <Link to={'/collab'}><button onClick={() => changeUsername(name)}>Lancer la conversation</button></Link>
             </div>
         </div>
     )

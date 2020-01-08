@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-import ChatBox from './pages/ChatBox';
 import Accueil from './pages/Accueil';
 import FormEndCall from './pages/FormEndCall';
+import Psychologue from './pages/Psychologue';
+import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -23,16 +24,16 @@ function App() {
     // faire une requete SQL pour vérifier le token
     if (token !== null && id !== null) {
       // const path = `'/chat?id=${id}&token=${token}'`;
-      const path = "/chat";
+      const path = "/collab";
       return (
         <>
-          <Route exact path='/' component={Accueil}/>
-          <Route path={path} component={ChatBox}/>
+          <Route exact path='/' component={Accueil} />
           <Route path='/form' component={FormEndCall}/>
+          <Route path={path} component={Collaborateur} />
         </>
       )
     } else {
-      return ( 
+      return (
         <div className="accueilContainer">
           <div className="accueilForm">
             <p>Vous n'êtes pas autorisé à accèder à ce lien</p>
@@ -44,9 +45,16 @@ function App() {
   }
 
   return (
-    <div>
+    <div style={{
+      height: '100vh',
+      minHeight: '500px',
+      minWidth: '600px'
+    }}>
       <SocketProvider>
         <BrowserRouter>
+          <Route exact path='/' component={Accueil} />
+          <Route path='/psy' component={Psychologue} />
+          <Route path='/collab' component={Collaborateur} />
           {url_test()}
         </BrowserRouter>
       </SocketProvider>
