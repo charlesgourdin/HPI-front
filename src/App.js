@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import ChatBox from './components/ChatBox';
 import Accueil from './pages/Accueil';
+import Psychologue from './pages/Psychologue';
+import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Psychologue from './pages/Psychologue';
 
 function App() {
 
@@ -23,11 +23,11 @@ function App() {
     // faire une requete SQL pour vérifier le token
     if (token !== null && id !== null) {
       // const path = `'/chat?id=${id}&token=${token}'`;
-      const path = "/chat";
+      const path = "/collab";
       return (
         <>
           <Route exact path='/' component={Accueil} />
-          <Route path={path} component={ChatBox} />
+          <Route path={path} component={Collaborateur} />
         </>
       )
     } else {
@@ -45,13 +45,14 @@ function App() {
   return (
     <div style={{
       height: '100vh',
-      minHeight: '500px'
+      minHeight: '500px',
+      minWidth: '600px'
     }}>
       <SocketProvider>
         <BrowserRouter>
           <Route exact path='/' component={Accueil} />
           <Route path='/psy' component={Psychologue} />
-          <Route path='/chat' component={ChatBox} />
+          <Route path='/collab' component={Collaborateur} />
           {url_test()}
         </BrowserRouter>
       </SocketProvider>

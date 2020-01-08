@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
 import StatusResum from './StatusResum';
 

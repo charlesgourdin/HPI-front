@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
     MDBCol,
     MDBRow
@@ -18,7 +18,7 @@ const Psychologue = () => {
                     <StatusBloc />
                     <TicketFill />
                 </MDBCol>
-                <MDBCol size='6' md='7' xl='8'>
+                <MDBCol className='h-100' size='6' md='7' xl='8'>
                     <ChatBox />
                 </MDBCol>
             </MDBRow>
