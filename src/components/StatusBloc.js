@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import user from '../assets/user.png'
-import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBBtn, MDBIcon } from "mdbreact";
+import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 
 const StatusBloc = () => {
 
-    const [status, setStatus] = useState({ status: 'Online', color: 'lightGreen' })
+    const [status, setStatus] = useState({ status: 'Online', color: 'LimeGreen' })
     //Solution temporaire, à intégrer dans context pour récup DBB
 
     return (
@@ -39,7 +39,7 @@ const StatusBloc = () => {
                                 <MDBIcon icon="angle-down" className=' white-text' />
                             </MDBDropdownToggle>
                             <MDBDropdownMenu basic>
-                                <MDBDropdownItem onClick={() => setStatus({ status: 'Online', color: 'lightGreen' })}>Online</MDBDropdownItem>
+                                <MDBDropdownItem onClick={() => setStatus({ status: 'Online', color: 'LimeGreen' })}>Online</MDBDropdownItem>
                                 <MDBDropdownItem onClick={() => setStatus({ status: 'Occupé', color: 'Orange' })}>Occupé</MDBDropdownItem>
                                 <MDBDropdownItem onClick={() => setStatus({ status: 'Offline', color: 'red' })}>Offline</MDBDropdownItem>
                             </MDBDropdownMenu>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
+import StatusResum from './StatusResum';
 
 const ticketModel = [
     {
@@ -33,35 +34,38 @@ const TicketFill = () => {
 
 
     return (
-        <div className='z-depth-2' style={{
+        <div className='z-depth-2 d-flex flex-column justify-content-between p-0' style={{
             borderRadius: '20px',
             backgroundColor: '#236FFF',
             padding: '10px',
-            height: '85%'
+            height: '86%'
         }}>
             <h2 style={{
                 textAlign: 'center',
-                color: 'white'
+                color: 'white',
+                marginTop: '10px',
+                fontWeight: 'bold'
             }}>
                 Tickets
                 </h2>
-            <div className='d-flex flex-column justify-content-start align-items-center'
+            <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
                 style={{
-                    height: '90%',
+                    height: 'auto',
                     overflowY: 'scroll'
+
                 }}>
                 {
                     ticketModel.map((ticket, i) => {
                         return (
                             <MDBCard className='m-3' style={{
                                 width: '90%',
-                                backgroundColor: '#082B2B'
+                                backgroundColor: '#082B2B',
+                                borderRadius: '12px'
                             }}>
-                                <MDBCardBody style={{color: 'white'}}>
+                                <MDBCardBody style={{ color: 'white' }}>
                                     <MDBCardTitle>Ticket {ticket.id}</MDBCardTitle>
                                     <MDBCardText>
-                                        Some quick example text to build on the card title and make
-                                        up the bulk of the card&apos;s content.
+                                        {ticket.username}
                                     </MDBCardText>
                                     <MDBBtn href="#" color='green'>Prendre le ticket</MDBBtn>
                                 </MDBCardBody>
@@ -70,6 +74,7 @@ const TicketFill = () => {
                     })
                 }
             </div>
+            <StatusResum />
         </div>
     )
 }
