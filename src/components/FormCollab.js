@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SectionContainer from './sectionContainer';
-import { MDBContainer, MDBInput } from 'mdbreact';
 
 
 class FormCollab extends Component {
@@ -16,23 +15,24 @@ class FormCollab extends Component {
     const form_collab_anonymous = {
       position: 'absolute',
       right: '0em',
-      marginTop: '-3em',
+      marginTop: '-2.6em',
     };
-    const red = {
-      backgroundColor: 'red',
-    }
+    const isAnonymous = this.state.anonymous === true 
+      ? 'form-control form-control-sm red lighten-3' 
+      : 'form-control form-control-sm';
+
   return(
     <>
-      <SectionContainer header='A propos de l&#39;appelant' className="mt-2">
+      <SectionContainer header='A propos de l&#39;appelant' >
 
         {/* Anonyme : récupéré de la BDD ? */}
         <div 
-          class="custom-control custom-checkbox custom-control-inline" 
+          className="custom-control custom-checkbox custom-control-inline mb-0 p-0" 
           style={form_collab_anonymous}
         >
           <input 
             gap 
-            class="custom-control-input" 
+            className="custom-control-input" 
             id="form-collab_anonymous" 
             type="checkbox" 
             onClick={() => this.setState({anonymous: !this.state.anonymous})}
@@ -78,24 +78,26 @@ class FormCollab extends Component {
         <div className='form-row mt-2'>
           <div className='form-col col-md'>
             <label 
+              className='mb-0'
               htmlFor='form-collab_lastname'
             >
               Nom
             </label>
             <input 
-              className={this.state.anonymous === true ? 'form-control red lighten-3' : 'form-control'}
+              className={isAnonymous}
               id='form-collab_lastname' 
               type='text' 
             />
           </div>
           <div className='form-col col-md'>
             <label 
+              className='mb-0'
               htmlFor='form-collab_firstname'
             >
               Prénom
             </label>
             <input 
-              className={this.state.anonymous === true ? 'form-control red lighten-3' : 'form-control'}
+              className={isAnonymous}
               id='form-collab_firstname' 
               type='text' 
             />
@@ -104,25 +106,27 @@ class FormCollab extends Component {
         <div className='form-row mt-2'>
           <div className='form-col col-md'>
             <label 
+              className='mb-0'
               htmlFor='form-collab_age'
             >
               Age
             </label>
             <input 
-              className={this.state.anonymous === true ? 'form-control red lighten-3' : 'form-control'}
+              className={isAnonymous}
               id='form-collab_age' 
               type='number' 
             />
           </div>
           <div className='form-col col-md'>
             <label 
+              className='mb-0'
               htmlFor='form-collab_anc'
             >
               Ancienneté
             </label>
             <input 
-              className={this.state.anonymous === true ? 'form-control red lighten-3' : 'form-control'}
-              id='form-collab_anc' 
+              className={isAnonymous}
+              id='form-collab_anc'
               type='text' 
             />
           </div>

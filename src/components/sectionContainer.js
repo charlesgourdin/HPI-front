@@ -28,8 +28,8 @@ const SectionContainer = ({
   );
 
   description = description ? <p>{description}</p> : '';
-  title = title ? <h2 className='mb-3'>{title}</h2> : '';
-  header = header ? <h4 className='mb-2'>{header}</h4> : '';
+  title = title ? <h3 className='mb-3'>{title}</h3> : '';
+  header = header ? <h5 className='m-1'>{header}</h5> : '';
 
   return (
     <>
