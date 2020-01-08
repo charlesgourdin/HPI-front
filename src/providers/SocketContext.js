@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
-import conf from '../constants/conf.json';
+// import conf from '../constants/conf.json';
 export const SocketContext = React.createContext();
 
 class SocketProvider extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            endpoint: conf.endpoint,
+            endpoint: "http://localhost:4001",
             user: 'anonyme',
             discussion: [],
             changeUsername: this.changeUsername,

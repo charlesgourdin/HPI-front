@@ -20,7 +20,7 @@ const Accueil = () => {
                     onChange={e => changeName(e.target.value)}
                     value={name}
                 />
-                <Link to={'/chat'}><button onClick={() => changeUsername(name)}>Lancer la conversation</button></Link>
+                <Link to={'/collab'}><button onClick={() => changeUsername(name)}>Lancer la conversation</button></Link>
             </div>
         </div>
     )

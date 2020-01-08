@@ -7,9 +7,13 @@ const ConversWindow = () => {
     const { user, discussion } = useContext(SocketContext)
 
     return (
-        <div className="discFill" id="to_autoscroll">
+        <div className="mt-2 h-100" id="to_autoscroll"
+        style={{
+            overflowY:'scroll',
+            width: '98%'
+        }}>
             {discussion.map((item, i) => {
-                return (<div className="messageContainer" key={i}
+                return (<div className="w-75 d-flex flex-column m-2" key={i}
                     style={{ float: user === item.user ? "right" : "left" }}
                 >
                     <p className="apiUsername"
