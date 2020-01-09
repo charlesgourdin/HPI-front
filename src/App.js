@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import AccueilPsy from './pages/AccueilPsy';
 import AccueilCollab from './pages/AccueilCollab';
+import FormEndCall from './pages/FormEndCall';
 import Psychologue from './pages/Psychologue';
 import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +29,7 @@ function App() {
       return (
         <>
           <Route exact path='/id' component={AccueilCollab} />
+          <Route path='/form' component={FormEndCall}/>
           <Route path={path} component={Collaborateur} />
         </>
       )
@@ -52,10 +54,9 @@ function App() {
       <SocketProvider>
         <BrowserRouter>
           <Route exact path='/' component={AccueilPsy} />
-          <Route path='/id' component={AccueilCollab} />
           <Route path='/psy' component={Psychologue} />
           <Route path='/collab' component={Collaborateur} />
-          {/* {url_test()} */}
+          {url_test()}
         </BrowserRouter>
       </SocketProvider>
     </div>
