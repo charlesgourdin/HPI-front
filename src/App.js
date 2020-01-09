@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Accueil from './pages/Accueil';
+import AccueilPsy from './pages/AccueilPsy';
+import AccueilCollab from './pages/AccueilCollab';
 import FormEndCall from './pages/FormEndCall';
 import Psychologue from './pages/Psychologue';
 import Collaborateur from './pages/Collaborateur';
@@ -27,7 +28,7 @@ function App() {
       const path = "/collab";
       return (
         <>
-          <Route exact path='/' component={Accueil} />
+          <Route exact path='/id' component={AccueilCollab} />
           <Route path='/form' component={FormEndCall}/>
           <Route path={path} component={Collaborateur} />
         </>
@@ -52,7 +53,7 @@ function App() {
     }}>
       <SocketProvider>
         <BrowserRouter>
-          <Route exact path='/' component={Accueil} />
+          <Route exact path='/' component={AccueilPsy} />
           <Route path='/psy' component={Psychologue} />
           <Route path='/collab' component={Collaborateur} />
           {url_test()}
