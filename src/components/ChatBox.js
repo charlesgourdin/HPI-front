@@ -15,9 +15,9 @@ class ChatBox extends Component {
     render() {
         return (
             <div className='d-flex flex-column justify-content-between align-items-center w-100 h-100 z-depth-2' style={{
-                borderRadius: '20px'
+                borderRadius: '10px'
             }}>
-                <div className='w-100 d-flex justify-content-end' style={{
+                {/* <div className='w-100 d-flex justify-content-end' style={{
                     backgroundColor: '#082B2B',
                     height: '60px',
                     // borderRadius: '20px 20px 0 0'
@@ -26,7 +26,7 @@ class ChatBox extends Component {
                     }}>
                         Terminer la conversation
                     </MDBBtn>
-                </div>
+                </div> */}
                 <ConversWindow username={this.state.username} />
                 <PostMessage username={this.state.username} />
             </div>

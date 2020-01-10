@@ -6,27 +6,27 @@ const ticketModel = [
     {
         id: 1,
         username: 'Eric',
-        attente: 'date'
+        connexion: '2019-01-01 08:00:00'
     },
     {
         id: 2,
         username: 'Tom',
-        attente: 'date'
+        connexion: '2019-01-01 08:00:00'
     },
     {
         id: 3,
         username: 'Max',
-        attente: 'date'
+        connexion: '2019-01-01 08:00:00'
     },
     {
         id: 4,
         username: 'Jules',
-        attente: 'date'
+        connexion: '2019-01-01 08:00:00'
     },
     {
         id: 5,
         username: 'Anne',
-        attente: 'date'
+        connexion: '2019-01-01 08:00:00'
     },
 ]
 
@@ -34,20 +34,18 @@ const TicketFill = () => {
 
 
     return (
-        <div className='z-depth-2 d-flex flex-column justify-content-between p-0' style={{
-            borderRadius: '20px',
-            backgroundColor: '#236FFF',
-            padding: '10px',
-            height: '86%'
+        <div className='h-100 z-depth-2 d-flex flex-column justify-content-between p-0' style={{
+            backgroundColor: 'white',
+            padding: '10px'
         }}>
             <h2 style={{
                 textAlign: 'center',
-                color: 'white',
+                color: 'black',
                 marginTop: '10px',
-                fontWeight: 'bold'
             }}>
                 Tickets
                 </h2>
+            <div><hr /></div>
             <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
                 style={{
                     height: 'auto',
@@ -57,24 +55,18 @@ const TicketFill = () => {
                 {
                     ticketModel.map((ticket, i) => {
                         return (
-                            <MDBCard className='m-3' style={{
-                                width: '90%',
-                                backgroundColor: '#082B2B',
-                                borderRadius: '12px'
-                            }}>
-                                <MDBCardBody style={{ color: 'white' }}>
-                                    <MDBCardTitle>Ticket {ticket.id}</MDBCardTitle>
-                                    <MDBCardText>
-                                        {ticket.username}
-                                    </MDBCardText>
-                                    <MDBBtn href="#" color='green'>Prendre le ticket</MDBBtn>
-                                </MDBCardBody>
-                            </MDBCard>
+                            <div className='ticket'>
+                                <p style={{ fontWeight: 'bold' }}>{ticket.username}</p>
+                                <p style={{ fontStyle: 'italic', color: 'grey' }}>Connexion à {ticket.connexion}</p>
+                                <div><hr /></div>
+                                <p style={{ fontSize: '12px' }}>Message:</p>
+                                <p style={{ fontStyle: 'italic', color: 'grey' }}>Pas de message dans le fil</p>
+                            </div>
                         )
                     })
                 }
             </div>
-            <StatusResum />
+            {/* <StatusResum /> */}
         </div>
     )
 }

@@ -15,7 +15,7 @@ const Psychologue = () => {
         }}>
             <MDBRow className='w-100'>
                 <MDBCol className='h-100 d-flex flex-column justify-content-between' size='6' md='5' xl='4'>
-                    <StatusBloc />
+                    {/* <StatusBloc /> */}
                     <TicketFill />
                 </MDBCol>
                 <MDBCol className='h-100' size='6' md='7' xl='8'>
