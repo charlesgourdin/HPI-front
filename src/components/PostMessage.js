@@ -29,18 +29,13 @@ const PostMessage = () => {
                     onChange={e => changeMsg(e.target.value)}
                     value={msg}
                 />
-                {/* <MDBBtn
-                    className=''
-                    color="blue accent-4"
-                    style={{ 
-                        borderRadius: '10em'
-                    }}
+                <button
+                    className='primary_button'
                     onClick={() => {
                         sendMessage(msg)
                         changeMsg('')
-                    }}>Envoyer</MDBBtn> */}
-                    <button className='primary_button'>
-                        CONFIRMER
+                    }}>
+                    CONFIRMER
                     </button>
             </div >
 

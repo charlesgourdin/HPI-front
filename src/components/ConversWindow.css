@@ -1,6 +1,6 @@
 .messageBlocA {
     color: white;
-    background-color: #6e6e6e;
+    background-color: #236FFF;
     padding: 8px ;
     width: 100%;
     border-radius: 8px 0 8px 8px;
@@ -8,7 +8,7 @@
 
 .messageBlocB {
     color: white;
-    background-color: #236FFF;
+    background-color: #6e6e6e;
     padding: 8px ;
     width: 100%;
     border-radius: 0 8px 8px 8px;

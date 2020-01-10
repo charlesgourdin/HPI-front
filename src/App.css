@@ -34,6 +34,63 @@ h2, p {
   outline: 0;
 }
 
+.danger_button{
+  background-color: #b00020;
+  width: 128px;
+  height: 52px;
+  border-radius: 20px;
+  border: 0px;
+  margin: 16px;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.danger_button:hover{
+  background-color: #800017;
+}
+
+.danger_button:active{
+  transform: scale(0.8) ;
+  transition-duration: 1s;
+}
+
+.danger_button:focus{
+  outline: 0;
+}
+
+.secondary_button{
+  background-color: white;
+  width: 128px;
+  height: 52px;
+  border-radius: 20px;
+  border: 0px;
+  margin: 16px;
+  color: #236fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.secondary_button:hover{
+  background-color: white;
+  color: #034acf;
+}
+
+.secondary_button:active{
+  transform: scale(0.95) ;
+  transition-duration: 0.4s;
+}
+
+.secondary_button:focus{
+  outline: 0;
+}
+
 .ticket{
   width: 90%;
   height: 200px;
@@ -51,6 +108,10 @@ h2, p {
 
 .ticket p{
   margin: 0;
+}
+
+textarea:focus{
+  outline: none;
 }
 
 ::-webkit-scrollbar {

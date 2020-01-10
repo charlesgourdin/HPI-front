@@ -34,9 +34,9 @@ const AccueilCollab = () => {
                         className='form-control' />
                     <div className='text-center mt-4'>
                         <Link to={'/collab'}><button
-                            className='btn btn-light'
+                            className='secondary_button'
+                            style={{width: '200px'}}
                             type='submit'
-                            style={{ width: '300px' }}
                             onClick={() => changeUsername(name)}>
                             Lancer la conversation
                     </button></Link>

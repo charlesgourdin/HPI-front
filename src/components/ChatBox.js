@@ -27,6 +27,8 @@ class ChatBox extends Component {
                         Terminer la conversation
                     </MDBBtn>
                 </div> */}
+                <button className='danger_button' style={{ width: '200px', alignSelf: 'flex-start', marginBottom:'0' }}>Terminer la discussion</button>
+                <div style={{ width: '100%'}}><hr /></div>
                 <ConversWindow username={this.state.username} />
                 <PostMessage username={this.state.username} />
             </div>
