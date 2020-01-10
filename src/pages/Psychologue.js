@@ -11,8 +11,7 @@ const Psychologue = () => {
 
 
     return (
-        <div className='d-flex h-100' style={{
-        }}>
+        <div className='d-flex h-100 justify-content-center' style={{}}>
             <MDBRow className='w-100 h-100'>
                 <MDBCol className='h-100' size='6' md='5' xl='4'>
                     <MDBRow className='w-100 h-100'>
