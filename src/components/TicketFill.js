@@ -1,6 +1,5 @@
-import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardText } from 'mdbreact';
-import StatusResum from './StatusResum';
+import React, { useContext } from 'react';
+import { SocketContext } from '../providers/SocketContext'
 
 const ticketModel = [
     {
@@ -32,6 +31,8 @@ const ticketModel = [
 
 const TicketFill = () => {
 
+    const { openChat } = useContext(SocketContext)
+
 
     return (
         <div className='h-100 z-depth-2 d-flex flex-column justify-content-between p-0' style={{
@@ -55,7 +56,7 @@ const TicketFill = () => {
                 {
                     ticketModel.map((ticket, i) => {
                         return (
-                            <div className='ticket'>
+                            <div className='ticket' onClick={() => openChat()}>
                                 <p style={{ fontWeight: 'bold' }}>{ticket.username}</p>
                                 <p style={{ fontStyle: 'italic', color: 'grey' }}>Connexion à {ticket.connexion}</p>
                                 <div><hr /></div>
@@ -66,7 +67,6 @@ const TicketFill = () => {
                     })
                 }
             </div>
-            {/* <StatusResum /> */}
         </div>
     )
 }

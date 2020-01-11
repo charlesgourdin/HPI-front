@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { SocketContext } from '../providers/SocketContext'
-import { MDBBtn } from 'mdbreact'
 
 const PostMessage = () => {
 

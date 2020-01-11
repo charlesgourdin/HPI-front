@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { SocketContext } from '../providers/SocketContext'
 import {
     MDBCol,
     MDBRow
@@ -8,6 +9,8 @@ import TicketFill from '../components/TicketFill';
 import MenuPsy from '../components/MenuPsy';
 
 const Psychologue = () => {
+
+    const { chatActiv } = useContext(SocketContext)
 
 
     return (
@@ -24,7 +27,7 @@ const Psychologue = () => {
                     </MDBRow>
                 </MDBCol>
                 <MDBCol className='h-100 p-3' size='6' md='7' xl='8'>
-                    <ChatBox />
+                    {chatActiv && <ChatBox />}
                 </MDBCol>
             </MDBRow>
         </div>

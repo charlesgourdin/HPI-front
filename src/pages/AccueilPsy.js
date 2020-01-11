@@ -1,6 +1,5 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { SocketContext } from '../providers/SocketContext'
 import { MDBCol } from 'mdbreact'
 
 class AccueilPsy extends Component {
