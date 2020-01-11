@@ -4,7 +4,7 @@ import {
     MDBCol,
     MDBRow
 } from 'mdbreact';
-import ChatBox from '../components/ChatBox';
+import ChatBoxPsy from '../components/ChatBoxPsy';
 import TicketFill from '../components/TicketFill';
 import MenuPsy from '../components/MenuPsy';
 
@@ -27,7 +27,7 @@ const Psychologue = () => {
                     </MDBRow>
                 </MDBCol>
                 <MDBCol className='h-100 p-3' size='6' md='7' xl='8'>
-                    {chatActiv && <ChatBox />}
+                    {chatActiv && <ChatBoxPsy />}
                 </MDBCol>
             </MDBRow>
         </div>

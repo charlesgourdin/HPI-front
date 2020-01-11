@@ -13,6 +13,7 @@ class SocketProvider extends Component {
             chatActiv: false,
             changeUsername: this.changeUsername,
             openChat: this.openChat,
+            closeChat: this.closeChat,
             sendMessage: this.sendMessage
         }
     }
@@ -23,6 +24,10 @@ class SocketProvider extends Component {
 
     openChat = () => {
         this.setState({chatActiv : true})
+    }
+
+    closeChat = () => {
+        this.setState({chatActiv: false})
     }
 
     sendAlert = (e) => {
