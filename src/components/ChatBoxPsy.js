@@ -13,7 +13,7 @@ const ChatBoxPsy = () => {
         <>
             {!inChat ?
                 <div className='d-flex flex-column justify-content-center align-items-center h-100 w-100'>
-                    <div className='w-50 z-depth-2 d-flex flex-column justify-content-around align-items-center' style={{ height: '150px', borderRadius: '8px' }}>
+                    <div className='w-50 z-depth-1 d-flex flex-column justify-content-around align-items-center' style={{ height: '150px', borderRadius: '8px' }}>
                         <h2 style={{
                             textAlign: 'center',
                             color: 'black',
