@@ -11,6 +11,7 @@ class SocketProvider extends Component {
             user: 'anonyme',
             discussion: [],
             chatActiv: false,
+            ticketActiv: -1,
             changeUsername: this.changeUsername,
             openChat: this.openChat,
             closeChat: this.closeChat,
@@ -22,12 +23,12 @@ class SocketProvider extends Component {
         this.setState({ user: name })
     }
 
-    openChat = () => {
-        this.setState({chatActiv : true})
+    openChat = (i) => {
+        this.setState({chatActiv : true, ticketActiv: i})
     }
 
     closeChat = () => {
-        this.setState({chatActiv: false})
+        this.setState({chatActiv: false , ticketActiv: -1})
     }
 
     sendAlert = (e) => {

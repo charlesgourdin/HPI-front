@@ -31,7 +31,17 @@ const ticketModel = [
 
 const TicketFill = () => {
 
-    const { openChat } = useContext(SocketContext)
+    const { openChat, ticketActiv } = useContext(SocketContext)
+
+    const displayTcketStyle = (i, ticketActiv) => {
+        if (ticketActiv === i) {
+            return 'ticketActiv'
+        } else if ((ticketActiv !== -1) && (i !== ticketActiv)) {
+            return 'ticketInactiv'
+        } else {
+            return 'ticket'
+        }
+    }
 
 
     return (
@@ -56,12 +66,37 @@ const TicketFill = () => {
                 {
                     ticketModel.map((ticket, i) => {
                         return (
-                            <div className='ticket' onClick={() => openChat()}>
-                                <p style={{ fontWeight: 'bold' }}>{ticket.username}</p>
-                                <p style={{ fontStyle: 'italic', color: 'grey' }}>Connexion à {ticket.connexion}</p>
+                            <div
+                                className={displayTcketStyle(i, ticketActiv)}
+                                onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i) : null}
+                            >
+                                <p style={{
+                                    fontWeight: 'bold'
+                                }}
+                                >
+                                    {ticket.username}
+                                </p>
+                                <p style={{
+                                    fontStyle: 'italic',
+                                    color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
+                                }}
+                                >
+                                    Connexion à {ticket.connexion}
+                                </p>
                                 <div><hr /></div>
-                                <p style={{ fontSize: '12px' }}>Message:</p>
-                                <p style={{ fontStyle: 'italic', color: 'grey' }}>Pas de message dans le fil</p>
+                                <p style={{
+                                    fontSize: '12px'
+                                }}
+                                >
+                                    Message:
+                                         </p>
+                                <p style={{
+                                    fontStyle: 'italic',
+                                    color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
+                                }}
+                                >
+                                    Pas de message dans le fil
+                                        </p>
                             </div>
                         )
                     })
