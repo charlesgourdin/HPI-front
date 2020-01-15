@@ -9,7 +9,8 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.state = {
-            endpoint: "http://localhost:4000",
+            // endpoint: "http://localhost:4000",
+            endpoint: "http://192.168.146.94:4000",
             user: 'anonyme',
             discussion: [],
             tickets: [],
@@ -26,7 +27,7 @@ class SocketProvider extends Component {
     startCollab = (name) => {
         this.setState({ user: name }, () => {
 
-            axios.post(`${this.state.endpoint}/tickets`, {
+            axios.post(`${this.state.endpoint}/tickets/`, {
                 id: 5,
                 token: 111,
                 pseudo: this.state.user
