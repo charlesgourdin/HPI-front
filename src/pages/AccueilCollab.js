@@ -5,7 +5,7 @@ import { MDBCol } from 'mdbreact'
 
 const AccueilCollab = () => {
 
-    const { changeUsername } = useContext(SocketContext)
+    const { startCollab } = useContext(SocketContext)
     const [name, changeName] = useState('anonyme')
 
     return (
@@ -37,7 +37,7 @@ const AccueilCollab = () => {
                             className='secondary_button'
                             style={{width: '200px'}}
                             type='submit'
-                            onClick={() => changeUsername(name)}>
+                            onClick={() => {startCollab(name)}}>
                             Lancer la conversation
                     </button></Link>
                     </div>

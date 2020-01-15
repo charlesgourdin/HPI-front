@@ -6,7 +6,7 @@ import PostMessage from './PostMessage';
 const ChatBoxPsy = () => {
 
     const [inChat, validChat] = useState(false)
-    const { closeChat } = useContext(SocketContext)
+    const { openChannel, closeChat } = useContext(SocketContext)
 
 
     return (
@@ -22,7 +22,7 @@ const ChatBoxPsy = () => {
                             Ouvrir ce ticket?
                 </h2>
                         <div>
-                            <button className='primary_button' onClick={() => validChat(true)}>Oui</button>
+                            <button className='primary_button' onClick={() => { validChat(true) ; openChannel()}}>Oui</button>
                             <button className='danger_button' onClick={() => closeChat()}>Non</button>
                         </div>
                     </div>

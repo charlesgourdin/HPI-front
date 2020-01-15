@@ -1,37 +1,37 @@
 import React, { useContext } from 'react';
 import { SocketContext } from '../providers/SocketContext'
 
-const ticketModel = [
-    {
-        id: 1,
-        username: 'Eric',
-        connexion: '2019-01-01 08:00:00'
-    },
-    {
-        id: 2,
-        username: 'Tom',
-        connexion: '2019-01-01 08:00:00'
-    },
-    {
-        id: 3,
-        username: 'Max',
-        connexion: '2019-01-01 08:00:00'
-    },
-    {
-        id: 4,
-        username: 'Jules',
-        connexion: '2019-01-01 08:00:00'
-    },
-    {
-        id: 5,
-        username: 'Anne',
-        connexion: '2019-01-01 08:00:00'
-    },
-]
+// const ticketModel = [
+//     {
+//         id: 1,
+//         username: 'Eric',
+//         connexion: '2019-01-01 08:00:00'
+//     },
+//     {
+//         id: 2,
+//         username: 'Tom',
+//         connexion: '2019-01-01 08:00:00'
+//     },
+//     {
+//         id: 3,
+//         username: 'Max',
+//         connexion: '2019-01-01 08:00:00'
+//     },
+//     {
+//         id: 4,
+//         username: 'Jules',
+//         connexion: '2019-01-01 08:00:00'
+//     },
+//     {
+//         id: 5,
+//         username: 'Anne',
+//         connexion: '2019-01-01 08:00:00'
+//     },
+// ]
 
 const TicketFill = () => {
 
-    const { openChat, ticketActiv } = useContext(SocketContext)
+    const { openChat, ticketActiv, tickets } = useContext(SocketContext)
 
     const displayTcketStyle = (i, ticketActiv) => {
         if (ticketActiv === i) {
@@ -64,42 +64,45 @@ const TicketFill = () => {
 
                 }}>
                 {
-                    ticketModel.map((ticket, i) => {
-                        return (
-                            <div
-                                className={displayTcketStyle(i, ticketActiv)}
-                                onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i) : null}
-                            >
-                                <p style={{
-                                    fontWeight: 'bold'
-                                }}
+                    tickets
+                        .filter((ticket) => ticket.state === 'open')
+                        .map((ticket, i) => {
+                            return (
+                                <div
+                                    className={displayTcketStyle(i, ticketActiv)}
+                                    onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i, ticket.channel) : null}
+                                    key={'ticket' + i}
                                 >
-                                    {ticket.username}
-                                </p>
-                                <p style={{
-                                    fontStyle: 'italic',
-                                    color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
-                                }}
-                                >
-                                    Connexion à {ticket.connexion}
-                                </p>
-                                <div><hr /></div>
-                                <p style={{
-                                    fontSize: '12px'
-                                }}
-                                >
-                                    Message:
+                                    <p style={{
+                                        fontWeight: 'bold'
+                                    }}
+                                    >
+                                        {ticket.username}
+                                    </p>
+                                    <p style={{
+                                        fontStyle: 'italic',
+                                        color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
+                                    }}
+                                    >
+                                        Connexion à {ticket.updated_on}
+                                    </p>
+                                    <div><hr /></div>
+                                    <p style={{
+                                        fontSize: '12px'
+                                    }}
+                                    >
+                                        Message:
                                          </p>
-                                <p style={{
-                                    fontStyle: 'italic',
-                                    color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
-                                }}
-                                >
-                                    Pas de message dans le fil
+                                    <p style={{
+                                        fontStyle: 'italic',
+                                        color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
+                                    }}
+                                    >
+                                        Pas de message dans le fil
                                         </p>
-                            </div>
-                        )
-                    })
+                                </div>
+                            )
+                        })
                 }
             </div>
         </div>
