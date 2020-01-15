@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { SocketContext } from '../providers/SocketContext'
 import './ConversWindow.css';
+import Moment from 'react-moment'
 
 const ConversWindow = () => {
 
     const { user, discussion } = useContext(SocketContext)
+
+    
 
     return (
         <div className="mt-2 h-100" id="to_autoscroll"
@@ -21,6 +24,7 @@ const ConversWindow = () => {
                     >{item.user}</p>
                     <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                         <p className="apiMessage">{item.message}</p>
+                        <Moment format="HH:mm" style={{float:'right', fontSize:'12px'}}>à récupérer de message</Moment>
                     </div>
                 </div>)
             })}

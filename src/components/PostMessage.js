@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { SocketContext } from '../providers/SocketContext'
-import { MDBBtn } from 'mdbreact'
 
 const PostMessage = () => {
 
@@ -18,18 +17,25 @@ const PostMessage = () => {
                 <textarea
                     className='h-75 rounded-lg w-100'
                     style={{
-                        border: '1px rgb(146, 146, 146) solid'
+                        border: '1px rgb(146, 146, 146) solid',
+                        fontFamily: `'Roboto', sans-serif`,
+                        padding: '12px'
                     }}
                     type="text"
                     id="message"
                     name="message"
+                    placeholder="Ecrivez votre texte ici"
                     onChange={e => changeMsg(e.target.value)}
                     value={msg}
                 />
-                <MDBBtn color="primary" rounded onClick={() => {
-                    sendMessage(msg)
-                    changeMsg('')
-                }}>Envoyer</MDBBtn>
+                <button
+                    className='primary_button'
+                    onClick={() => {
+                        sendMessage(msg)
+                        changeMsg('')
+                    }}>
+                    CONFIRMER
+                    </button>
             </div >
 
 

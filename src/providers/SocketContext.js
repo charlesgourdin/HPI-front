@@ -10,13 +10,25 @@ class SocketProvider extends Component {
             endpoint: "http://localhost:4001",
             user: 'anonyme',
             discussion: [],
+            chatActiv: false,
+            ticketActiv: -1,
             changeUsername: this.changeUsername,
+            openChat: this.openChat,
+            closeChat: this.closeChat,
             sendMessage: this.sendMessage
         }
     }
 
     changeUsername = (name) => {
         this.setState({ user: name })
+    }
+
+    openChat = (i) => {
+        this.setState({chatActiv : true, ticketActiv: i})
+    }
+
+    closeChat = () => {
+        this.setState({chatActiv: false , ticketActiv: -1})
     }
 
     sendAlert = (e) => {

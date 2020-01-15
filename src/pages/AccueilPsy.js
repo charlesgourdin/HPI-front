@@ -1,6 +1,5 @@
-import React, { Component, useContext, useState } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import { SocketContext } from '../providers/SocketContext'
 import { MDBCol } from 'mdbreact'
 
 class AccueilPsy extends Component {
@@ -55,14 +54,14 @@ class AccueilPsy extends Component {
                         <label htmlFor='username' className='white-text'>
                             Your name
                   </label>
-                        <input type='text' id='username' name='username' className='form-control' onChange={this.updateField}/>
+                        <input type='text' id='username' name='username' className='form-control' onChange={this.updateField} />
                         <br />
                         <label htmlFor='password' className='white-text'>
                             Your password
                   </label>
-                        <input type='password' id='password' name='password' className='form-control' onChange={this.updateField}/>
+                        <input type='password' id='password' name='password' className='form-control' onChange={this.updateField} />
                         <div className='text-center mt-4'>
-                            <Link to='/psy'><button className='btn btn-light' type='submit' style={{ width: '200px' }} >
+                            <Link to='/psy'><button className='secondary_button' style={{ width: '200px' }} type='submit'  >
                                 Login
                     </button></Link>
                         </div>

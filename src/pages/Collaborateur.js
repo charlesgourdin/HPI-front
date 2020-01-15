@@ -3,7 +3,7 @@ import {
     MDBCol,
     MDBRow
 } from 'mdbreact';
-import ChatBox from '../components/ChatBox';
+import ChatBoxCollab from '../components/ChatBoxCollab';
 
 const Collaborateur = () => {
 
@@ -13,7 +13,7 @@ const Collaborateur = () => {
         }}>
             <MDBRow center className='w-100'>
                 <MDBCol className='h-100' size='10'>
-                    <ChatBox />
+                    <ChatBoxCollab />
                 </MDBCol>
             </MDBRow>
         </div>
