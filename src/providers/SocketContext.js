@@ -9,8 +9,8 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.state = {
-            endpoint: "http://localhost:4000",
-            // endpoint: "http://192.168.146.94:4000",
+            // endpoint: "http://localhost:4000",
+            endpoint: "http://192.168.146.94:4000",
             user: 'anonyme',
             discussion: [],
             tickets: [],
@@ -38,10 +38,9 @@ class SocketProvider extends Component {
                 })
                 .then(() => {
                     const socket = socketIOClient(this.state.endpoint)
-                    socket.emit('join', { room: this.channel })
-                })
-                .then(()=>{
-                    this.openChannel()
+                    console.log(socket);
+                    socket.emit('join', {room: this.channel, username:"toto"})
+                    this.openChannel();
                 })
         })
     }
@@ -54,7 +53,10 @@ class SocketProvider extends Component {
 
     openChannel = () => {
         const socket = socketIOClient(this.state.endpoint)
-        socket.on(this.channel, object => {
+        socket.on('message', test => {
+            console.log("channel:", this.channel, test)
+        });
+        socket.on('message', object => {
             this.setState({ discussion: [...this.state.discussion, object] })
             document.getElementById("to_autoscroll").scrollBy(0, 10000)
         })
@@ -73,8 +75,12 @@ class SocketProvider extends Component {
     }
 
     sendMessage = (message) => {
-        // const socket = socketIOClient(this.state.endpoint)
-        // if (message.length > 0) socket.emit(this.channel, { message: message, user: this.state.user })
+        const socket = socketIOClient(this.state.endpoint)
+        if (message.length > 0) {
+            console.log(socket);
+            socket.emit("message", { message, channel: this.channel, user: this.state.user })
+            socket.emit(this.channel, { message: message, user: this.state.user })
+        }
     }
 
     componentDidMount = () => {
