@@ -9,8 +9,8 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.state = {
-            // endpoint: "http://localhost:4000",
-            endpoint: "http://192.168.146.94:4000",
+            endpoint: "http://localhost:4000",
+            // endpoint: "http://192.168.146.94:4000",
             user: 'anonyme',
             discussion: [],
             tickets: [],
@@ -36,13 +36,13 @@ class SocketProvider extends Component {
                     console.log(res.data.channel)
                     this.channel = res.data.channel
                 })
-            // .then(() => {
-            //     const socket = socketIOClient(this.state.endpoint)
-            //     socket.on(this.channel, object => {
-            //         this.setState({ discussion: [...this.state.discussion, object] })
-            //         document.getElementById("to_autoscroll").scrollBy(0, 10000)
-            //     })
-            // })
+                .then(() => {
+                    const socket = socketIOClient(this.state.endpoint)
+                    socket.emit('join', { room: this.channel })
+                })
+                .then(()=>{
+                    this.openChannel()
+                })
         })
     }
 
@@ -73,8 +73,8 @@ class SocketProvider extends Component {
     }
 
     sendMessage = (message) => {
-        const socket = socketIOClient(this.state.endpoint)
-        if (message.length > 0) socket.emit(this.channel, { message: message, user: this.state.user })
+        // const socket = socketIOClient(this.state.endpoint)
+        // if (message.length > 0) socket.emit(this.channel, { message: message, user: this.state.user })
     }
 
     componentDidMount = () => {
