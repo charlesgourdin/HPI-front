@@ -9,8 +9,8 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.state = {
-            // endpoint: "http://localhost:4000",
-            endpoint: "http://192.168.146.94:4000",
+            endpoint: "http://192.168.146.52:4000",
+            // endpoint: "http://192.168.146.94:4000",
             user: 'anonyme',
             discussion: [],
             tickets: [],
@@ -38,9 +38,11 @@ class SocketProvider extends Component {
                 })
                 .then(() => {
                     const socket = socketIOClient(this.state.endpoint)
-                    console.log(socket);
-                    socket.emit('join', {room: this.channel, username:"toto"})
-                    this.openChannel();
+                    socket.emit('waiting room', this.channel)
+                    socket.on('waiting room', object => {
+                        this.setState({ discussion: [...this.state.discussion, object] })
+                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                    })
                 })
         })
     }
@@ -53,17 +55,15 @@ class SocketProvider extends Component {
 
     openChannel = () => {
         const socket = socketIOClient(this.state.endpoint)
-        socket.on('message', test => {
-            console.log("channel:", this.channel, test)
-        });
-        socket.on('message', object => {
+        socket.emit('waiting room', this.channel)
+        socket.on('waiting room', object => {
             this.setState({ discussion: [...this.state.discussion, object] })
             document.getElementById("to_autoscroll").scrollBy(0, 10000)
         })
     }
 
     closeChat = () => {
-        this.setState({ chatActiv: false, ticketActiv: -1 })
+        this.setState({ chatActiv: false, ticketActiv: -1, discussion : [] })
     }
 
     getTicket = () => {
@@ -77,9 +77,7 @@ class SocketProvider extends Component {
     sendMessage = (message) => {
         const socket = socketIOClient(this.state.endpoint)
         if (message.length > 0) {
-            console.log(socket);
-            socket.emit("message", { message, channel: this.channel, user: this.state.user })
-            socket.emit(this.channel, { message: message, user: this.state.user })
+            socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
         }
     }
 

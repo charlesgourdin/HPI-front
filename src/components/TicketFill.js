@@ -77,7 +77,7 @@ const TicketFill = () => {
                                         fontWeight: 'bold'
                                     }}
                                     >
-                                        {ticket.username}
+                                        {ticket.channel}
                                     </p>
                                     <p style={{
                                         fontStyle: 'italic',
