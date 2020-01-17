@@ -9,7 +9,7 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.state = {
-            endpoint: "http://192.168.146.52:4000",
+            endpoint: "http://192.168.146.52:4000", 
             // endpoint: "http://192.168.146.94:4000",
             user: 'anonyme',
             discussion: [],

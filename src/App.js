@@ -29,7 +29,7 @@ function App() {
       return (
         <>
           <Route exact path='/id' component={AccueilCollab} />
-          <Route path='/form' component={FormEndCall}/>
+          <Route path='/form' component={FormEndCall} />
           <Route path={path} component={Collaborateur} />
         </>
       )

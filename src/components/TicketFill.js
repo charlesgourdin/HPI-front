@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { SocketContext } from '../providers/SocketContext'
+import Moment from 'react-moment'
 
 // const ticketModel = [
 //     {
@@ -43,6 +44,13 @@ const TicketFill = () => {
         }
     }
 
+    const countOldTickets = (i) => {
+        return tickets
+            .filter(item => item.collab_id === i)
+            .filter(item => item.state === 'closed')
+            .length
+    }
+
 
     return (
         <div className='h-100 z-depth-2 d-flex flex-column justify-content-between p-0' style={{
@@ -55,8 +63,8 @@ const TicketFill = () => {
                 marginTop: '10px',
             }}>
                 Tickets
-                </h2>
-            <div><hr /></div>
+                <hr />
+            </h2>
             <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
                 style={{
                     height: 'auto',
@@ -77,28 +85,28 @@ const TicketFill = () => {
                                         fontWeight: 'bold'
                                     }}
                                     >
-                                        {ticket.channel}
+                                        {ticket.pseudo}
                                     </p>
                                     <p style={{
                                         fontStyle: 'italic',
                                         color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
                                     }}
                                     >
-                                        Connexion à {ticket.updated_on}
+                                        Connexion le <Moment format="DD/MM/YYYY">{ticket.updated_on}</Moment> à <Moment format="HH:mm">{ticket.updated_on}</Moment>
                                     </p>
                                     <div><hr /></div>
                                     <p style={{
                                         fontSize: '12px'
                                     }}
                                     >
-                                        Message:
+                                        Historique:
                                          </p>
                                     <p style={{
                                         fontStyle: 'italic',
                                         color: ((ticketActiv !== -1) && (i !== ticketActiv)) ? 'lightgrey' : 'grey'
                                     }}
                                     >
-                                        Pas de message dans le fil
+                                        {countOldTickets(ticket.collab_id)} ticket(s) clôturé(s)
                                         </p>
                                 </div>
                             )
