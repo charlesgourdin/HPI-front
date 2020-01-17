@@ -57,6 +57,7 @@ class SocketProvider extends Component {
         const socket = socketIOClient(this.state.endpoint)
         socket.emit('waiting room', this.channel)
         socket.on('waiting room', object => {
+            console.log(object)
             this.setState({ discussion: [...this.state.discussion, object] })
             document.getElementById("to_autoscroll").scrollBy(0, 10000)
         })
@@ -64,6 +65,8 @@ class SocketProvider extends Component {
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion : [] })
+        const socket = socketIOClient(this.state.endpoint)
+        socket.emit('leave room', this.channel)
     }
 
     getTicket = () => {

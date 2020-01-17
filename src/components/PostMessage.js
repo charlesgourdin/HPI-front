@@ -14,28 +14,34 @@ const PostMessage = () => {
             // border:'1px black solid'
         }}>
             <div className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'>
-                <textarea
-                    className='h-75 rounded-lg w-100'
-                    style={{
-                        border: '1px rgb(146, 146, 146) solid',
-                        fontFamily: `'Roboto', sans-serif`,
-                        padding: '12px'
-                    }}
-                    type="text"
-                    id="message"
-                    name="message"
-                    placeholder="Ecrivez votre texte ici"
-                    onChange={e => changeMsg(e.target.value)}
-                    value={msg}
-                />
-                <button
-                    className='primary_button'
-                    onClick={() => {
-                        sendMessage(msg)
-                        changeMsg('')
-                    }}>
-                    CONFIRMER
+                <form>
+
+                    <input
+                        className='h-75 rounded-lg w-100'
+                        style={{
+                            border: '1px rgb(146, 146, 146) solid',
+                            fontFamily: `'Roboto', sans-serif`,
+                            padding: '12px'
+                        }}
+                        type="text"
+                        id="message"
+                        name="message"
+                        placeholder="Ecrivez votre texte ici"
+                        onChange={e => changeMsg(e.target.value)}
+                        value={msg}
+                    />
+                    <button
+                        className='primary_button'
+                        type="submit"
+                        onClick={(event) => {
+                            event.preventDefault()
+                            sendMessage(msg)
+                            changeMsg('')
+                        }}>
+                        CONFIRMER
                     </button>
+                </form>
+
             </div >
 
 
