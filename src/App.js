@@ -7,7 +7,7 @@ import Psychologue from './pages/Psychologue';
 import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 
 function App() {
 
@@ -53,9 +53,11 @@ function App() {
     }}>
       <SocketProvider>
         <BrowserRouter>
-          <Route exact path='/' component={AccueilPsy} />
-          <Route path='/psy' component={Psychologue} />
-          <Route path='/collab' component={Collaborateur} />
+          <Switch>
+            <Route exact path='/' component={AccueilPsy} />
+            <Route path='/psy' component={Psychologue} />
+            <Route path='/collab' component={Collaborateur} />
+          </Switch>
           {url_test()}
         </BrowserRouter>
       </SocketProvider>
@@ -64,3 +66,20 @@ function App() {
 }
 
 export default App;
+
+
+// const PrivateRoute = (props)=>{
+//   const isLogged = useContext(user)
+//   if(localStorage.getItem('token'))
+//     return <Route {...props}/>
+//   else
+//     return <Redirect to="/login" />
+// }
+
+// const PublicRoute = (MonComp)=>{
+//   const isLogged = useContext(user)
+//   if(isLogged)
+//     return MonComp
+//   else
+//     return <Redirect to="/login" />
+// }

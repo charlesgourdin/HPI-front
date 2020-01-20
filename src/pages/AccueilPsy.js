@@ -1,75 +1,63 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import { MDBCol } from 'mdbreact'
+import React, { useContext, useState } from 'react';
+import { SocketContext } from '../providers/SocketContext';
+import axios from 'axios';
+import { MDBCol } from 'mdbreact';
 
-class AccueilPsy extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+const AccueilPsy = () => {
 
-        }
+    const { endpoint } = useContext(SocketContext)
+    const [data, updateData] = useState({ email: '', password: '' })
+
+    const updateField = (event) => {
+        updateData(Object.assign(data, { [event.target.name]: event.target.value }))
     }
 
-    updateField = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("/",
-            {
-                method: 'POST',
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                }),
-                body: JSON.stringify(this.state),
-            })
+
+        axios.post(`${endpoint}/users/auth/admin`, { data })
             .then(res => {
-                if (res.ok) {
-                    return res.json()
-                }
-                else {
-                    throw new Error(res.statusText);
+                console.log(res.status)
+                if (res.status === 200) {
+                    
                 }
             })
-            .catch(err => this.setState({ "flash": err.message }))
     }
 
-    render() {
-        return (
-            <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
-                <h2 style={{
-                    marginBottom: '64px',
-                    fontWeight: 'bold',
-                    fontSize: '64px'
-                }}>
-                    Bienvenue sur SpeakUp
+    return (
+        <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+            <h2 style={{
+                marginBottom: '64px',
+                fontWeight: 'bold',
+                fontSize: '64px'
+            }}>
+                Bienvenue sur SpeakUp
             </h2>
-                <MDBCol md='6' className='d-flex align-items-center'>
-                    <form className='w-100 px-5 py-3 z-depth-4' style={{
-                        backgroundColor: '#034ACF',
-                        borderRadius: '20px'
-                    }}>
-                        <p className='h5 text-center mb-4 white-text'>Sign in</p>
-                        <label htmlFor='username' className='white-text'>
-                            Your name
+            <MDBCol md='6' className='d-flex align-items-center'>
+                <form className='w-100 px-5 py-3 z-depth-4' style={{
+                    backgroundColor: '#034ACF',
+                    borderRadius: '20px'
+                }}>
+                    <p className='h5 text-center mb-4 white-text'>Sign in</p>
+                    <label htmlFor='email' className='white-text'>
+                        Your email
                   </label>
-                        <input type='text' id='username' name='username' className='form-control' onChange={this.updateField} />
-                        <br />
-                        <label htmlFor='password' className='white-text'>
-                            Your password
+                    <input type='email' id='email' name='email' className='form-control' onChange={updateField} />
+                    <br />
+                    <label htmlFor='password' className='white-text'>
+                        Your password
                   </label>
-                        <input type='password' id='password' name='password' className='form-control' onChange={this.updateField} />
-                        <div className='text-center mt-4'>
-                            <Link to='/psy'><button className='secondary_button' style={{ width: '200px' }} type='submit'  >
-                                Login
-                    </button></Link>
-                        </div>
-                    </form>
-                </MDBCol>
-            </div>
-        )
-    }
+                    <input type='password' id='password' name='password' className='form-control' onChange={updateField} />
+                    <div className='text-center mt-4'>
+                        <button className='secondary_button' style={{ width: '200px' }} type='submit' onClick={handleSubmit} >
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </MDBCol>
+        </div>
+    )
+
 }
 
 export default AccueilPsy;
