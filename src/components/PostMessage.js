@@ -13,9 +13,7 @@ const PostMessage = () => {
             height: '25%',
             // border:'1px black solid'
         }}>
-            <div className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'>
-                <form>
-
+                <form className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'> 
                     <input
                         className='h-75 rounded-lg w-100'
                         style={{
@@ -42,7 +40,6 @@ const PostMessage = () => {
                     </button>
                 </form>
 
-            </div >
 
 
 

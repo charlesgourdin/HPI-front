@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
-// import conf from '../constants/conf.json';
 export const SocketContext = React.createContext();
 
 class SocketProvider extends Component {
     constructor(props) {
         super(props)
         this.channel = '';
+        this.clientId = '';
         this.state = {
             endpoint: "http://192.168.146.52:4000", 
             // endpoint: "http://192.168.146.94:4000",
+            socket: '',
             user: 'anonyme',
             discussion: [],
             tickets: [],
@@ -37,9 +38,8 @@ class SocketProvider extends Component {
                     this.channel = res.data.channel
                 })
                 .then(() => {
-                    const socket = socketIOClient(this.state.endpoint)
-                    socket.emit('waiting room', this.channel)
-                    socket.on('waiting room', object => {
+                    this.state.socket.emit('waiting room', this.channel)
+                    this.state.socket.on('waiting room', object => {
                         this.setState({ discussion: [...this.state.discussion, object] })
                         document.getElementById("to_autoscroll").scrollBy(0, 10000)
                     })
@@ -54,19 +54,21 @@ class SocketProvider extends Component {
     }
 
     openChannel = () => {
-        const socket = socketIOClient(this.state.endpoint)
-        socket.emit('waiting room', this.channel)
-        socket.on('waiting room', object => {
-            console.log(object)
-            this.setState({ discussion: [...this.state.discussion, object] })
-            document.getElementById("to_autoscroll").scrollBy(0, 10000)
+        this.state.socket.emit('waiting room', this.channel)
+        this.state.socket.on('waiting room', object => {
+            if(typeof(object)==='object'){
+                this.setState({ discussion: [...this.state.discussion, object] })
+                if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
+            }
+            else {
+                this.clientId = object
+            }
         })
     }
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion : [] })
-        const socket = socketIOClient(this.state.endpoint)
-        socket.emit('leave room', this.channel)
+        this.state.socket.emit('leave room', {channel: this.channel, clientId: this.clientId})
     }
 
     getTicket = () => {
@@ -78,13 +80,13 @@ class SocketProvider extends Component {
     }
 
     sendMessage = (message) => {
-        const socket = socketIOClient(this.state.endpoint)
         if (message.length > 0) {
-            socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
+            this.state.socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
         }
     }
 
     componentDidMount = () => {
+        this.setState({socket: socketIOClient(this.state.endpoint)})
         this.getTicket()
     }
 
