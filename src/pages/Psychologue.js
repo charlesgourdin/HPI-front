@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SocketContext } from '../providers/SocketContext'
 import {
     MDBCol,
@@ -10,7 +10,12 @@ import MenuPsy from '../components/MenuPsy';
 
 const Psychologue = () => {
 
-    const { chatActiv } = useContext(SocketContext)
+    const { chatActiv, getTicket } = useContext(SocketContext)
+
+    useEffect(() => {
+        console.log("coucou")
+        getTicket()
+    },[])
 
 
     return (

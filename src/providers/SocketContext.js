@@ -13,7 +13,7 @@ class SocketProvider extends Component {
             // endpoint: "http://192.168.146.94:4000",
             socket: '',
             user: 'anonyme',
-            token: '',
+            token: localStorage.getItem("token")||null,
             isLogged: false,
             discussion: [],
             tickets: [],
@@ -24,7 +24,8 @@ class SocketProvider extends Component {
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
-            sendMessage: this.sendMessage
+            sendMessage: this.sendMessage,
+            getTicket: this.getTicket
         }
     }
 
@@ -83,7 +84,8 @@ class SocketProvider extends Component {
     }
 
     getTicket = () => {
-        axios.get(`${this.state.endpoint}/tickets/all`)
+        console.log("caca",this.state)
+        axios.get(`${this.state.endpoint}/tickets/all`, { headers: {"Authorization" : `Bearer ${this.state.token}`} })
             .then(res => {
                 const tickets = res.data;
                 this.setState({ tickets });
@@ -98,7 +100,6 @@ class SocketProvider extends Component {
 
     componentDidMount = () => {
         this.setState({ socket: socketIOClient(this.state.endpoint) })
-        this.getTicket()
     }
 
     render() {
