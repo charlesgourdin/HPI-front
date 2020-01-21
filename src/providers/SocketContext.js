@@ -9,8 +9,9 @@ class SocketProvider extends Component {
         this.channel = '';
         this.clientId = '';
         this.state = {
-            endpoint: "http://192.168.146.52:4000", 
-            // endpoint: "http://192.168.146.94:4000",
+            // endpoint: "http://192.168.146.52:4000", 
+            endpoint: "http://192.168.146.94:4000",
+            // endpoint: "http://192.168.1.12:4000",
             socket: '',
             user: 'anonyme',
             discussion: [],
