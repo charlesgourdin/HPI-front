@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import './App.css';
 import axios from 'axios'
-import AccueilPsy from './pages/AccueilPsy';
-import AccueilCollab from './pages/AccueilCollab';
-import Psychologue from './pages/Psychologue';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { SocketContext } from './providers/SocketContext'
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import { Link, useHistory } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { MDBBtn } from 'mdbreact';
+import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Accueil from './pages/collaborateur/Accueil';
+import Collaborateur from './pages/collaborateur/Collaborateur';
+import AccueilPsy from './pages/AccueilPsy';
+import Psychologue from './pages/Psychologue';
+import { SocketContext } from './providers/SocketContext'
 
 
 const params = (new URL(document.location)).searchParams;
@@ -17,7 +17,14 @@ const id = params.get('id');
 let checkTokenValue = null;
 
 const Authorized = () => {
-  return <Route exact path='/' component={AccueilCollab} />;
+  return (
+    <>
+      <Route exact path='/' component={Accueil} />
+      <Route exact path='/collab' component={Collaborateur} />
+      <Route exact path='/' component={Accueil} />
+      
+    </>
+  );
 }
 
 const Unauthorized = () => {
