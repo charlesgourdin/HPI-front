@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 const AccueilPsy = () => {
 
-    const { endpoint, logUser } = useContext(SocketContext);
+    const { endpoint, setToken } = useContext(SocketContext);
     const [data, updateData] = useState({ email: '', password: '' });
     const [error, setError] = useState([false, ''])
     let history = useHistory();
@@ -21,7 +21,7 @@ const AccueilPsy = () => {
         axios.post(`${endpoint}/users/auth/admin`, { data })
             .then(res => {
                 if (res.status === 200) {
-                    logUser(res.data)
+                    setToken(res.data)
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('username', res.data.username)
                 }

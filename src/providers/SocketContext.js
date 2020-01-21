@@ -8,33 +8,30 @@ class SocketProvider extends Component {
         super(props)
         this.channel = '';
         this.clientId = '';
+        this.token = localStorage.getItem("token") || null;
         this.state = {
-            endpoint: "http://192.168.146.52:4000",
+            endpoint: "http://192.168.0.21:4000",
             // endpoint: "http://192.168.146.94:4000",
-            socket: '',
-            user: 'anonyme',
-            token: localStorage.getItem("token")||null,
+            socket: socketIOClient("http://192.168.0.21:4000"),
+            user: localStorage.getItem("username") || 'anonyme',
             isLogged: false,
             discussion: [],
             tickets: [],
             chatActiv: false,
             ticketActiv: -1,
-            logUser: this.logUser,
+            getTicket: this.getTicket,
             startCollab: this.startCollab,
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
             sendMessage: this.sendMessage,
-            getTicket: this.getTicket
+            setToken: this.setToken
         }
     }
 
-    logUser = (user) => {
-        this.setState({
-            isLogged: true,
-            user: user.username,
-            token: user.token
-        })
+    setToken = (data) => {
+        this.setState({ user: data.username })
+        this.token = data.token
     }
 
     startCollab = (name) => {
@@ -46,7 +43,6 @@ class SocketProvider extends Component {
                 pseudo: this.state.user
             })
                 .then(res => {
-                    console.log(res.data.channel)
                     this.channel = res.data.channel
                 })
                 .then(() => {
@@ -67,15 +63,6 @@ class SocketProvider extends Component {
 
     openChannel = () => {
         this.state.socket.emit('waiting room', this.channel)
-        this.state.socket.on('waiting room', object => {
-            if (typeof (object) === 'object') {
-                this.setState({ discussion: [...this.state.discussion, object] })
-                if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
-            }
-            else {
-                this.clientId = object
-            }
-        })
     }
 
     closeChat = () => {
@@ -84,8 +71,7 @@ class SocketProvider extends Component {
     }
 
     getTicket = () => {
-        console.log("caca",this.state)
-        axios.get(`${this.state.endpoint}/tickets/all`, { headers: {"Authorization" : `Bearer ${this.state.token}`} })
+        axios.get(`${this.state.endpoint}/tickets/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 const tickets = res.data;
                 this.setState({ tickets });
@@ -99,7 +85,15 @@ class SocketProvider extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({ socket: socketIOClient(this.state.endpoint) })
+        this.state.socket.on('waiting room', object => {
+            if (typeof (object) === 'object') {
+                this.setState({ discussion: [...this.state.discussion, object] })
+                if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
+            }
+            else {
+                this.clientId = object
+            }
+        })
     }
 
     render() {

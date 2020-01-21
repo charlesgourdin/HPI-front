@@ -10,13 +10,11 @@ import MenuPsy from '../components/MenuPsy';
 
 const Psychologue = () => {
 
-    const { chatActiv, getTicket } = useContext(SocketContext)
+    const { chatActiv , getTicket} = useContext(SocketContext)
 
-    useEffect(() => {
-        console.log("coucou")
+    useEffect(()=>{
         getTicket()
-    },[])
-
+    }, [getTicket])
 
     return (
         <div className='d-flex h-100 justify-content-center' style={{}}>
