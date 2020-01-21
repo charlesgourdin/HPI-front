@@ -6,8 +6,8 @@ import AccueilCollab from './pages/AccueilCollab';
 import Psychologue from './pages/Psychologue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SocketContext } from './providers/SocketContext'
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Link } from 'react-router-dom'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom'
 import { MDBBtn } from 'mdbreact';
 
 
@@ -24,7 +24,10 @@ const Unauthorized = () => {
   if ((!id || !token) || (id && token)) 
     return (
       <>
-        <div id='app-unauthorized' style={{display: (checkTokenValue === 'admin') ? '' : 'none' }}>
+        <div 
+          className="d-flex h-100 w-100 align-items-center justify-content-center"
+          id='app-unauthorized' style={{ display: (checkTokenValue === 'admin') ? '' : 'none' }}
+          >
           <Link to={'/admin'}>
             <MDBBtn 
               type="button"
@@ -74,7 +77,6 @@ function App() {
   if (!token || !id) console.log("2")
   return (
     <div 
-      className="d-flex align-items-center justify-content-center"
       style={{
         height: '100vh',
         width: '100vw',
@@ -83,9 +85,12 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <Route path='/admin/tickets' component={Psychologue} />
-        <Route path='/admin' component={AccueilPsy} />
-        {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
+        <Switch>
+
+          <Route exact path='/admin' component={AccueilPsy} />
+          <Route path='/admin/tickets' component={Psychologue} />
+          {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
+        </Switch>
       </BrowserRouter>
     </div>
   );
