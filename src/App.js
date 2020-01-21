@@ -21,8 +21,6 @@ const Authorized = () => {
     <>
       <Route exact path='/' component={Accueil} />
       <Route exact path='/collab' component={Collaborateur} />
-      <Route exact path='/' component={Accueil} />
-      
     </>
   );
 }

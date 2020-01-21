@@ -61,7 +61,7 @@ class AccueilPsy extends Component {
                   </label>
                         <input type='password' id='password' name='password' className='form-control' onChange={this.updateField} />
                         <div className='text-center mt-4'>
-                            <Link to='/psy'><button className='secondary_button' style={{ width: '200px' }} type='submit'  >
+                            <Link to='/admin'><button className='secondary_button' style={{ width: '200px' }} type='submit'  >
                                 Login
                     </button></Link>
                         </div>
