@@ -8,6 +8,7 @@ import Collaborateur from './pages/Collaborateur';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SocketProvider from './providers/SocketContext';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import PrivateRoute from './hoc/PrivateRoute';
 
 function App() {
 
@@ -55,7 +56,7 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={AccueilPsy} />
-            <Route path='/psy' component={Psychologue} />
+            <PrivateRoute path='/psy' component={Psychologue} />
             <Route path='/collab' component={Collaborateur} />
           </Switch>
           {url_test()}
@@ -66,20 +67,3 @@ function App() {
 }
 
 export default App;
-
-
-// const PrivateRoute = (props)=>{
-//   const isLogged = useContext(user)
-//   if(localStorage.getItem('token'))
-//     return <Route {...props}/>
-//   else
-//     return <Redirect to="/login" />
-// }
-
-// const PublicRoute = (MonComp)=>{
-//   const isLogged = useContext(user)
-//   if(isLogged)
-//     return MonComp
-//   else
-//     return <Redirect to="/login" />
-// }

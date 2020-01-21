@@ -9,20 +9,29 @@ class SocketProvider extends Component {
         this.channel = '';
         this.clientId = '';
         this.state = {
-            endpoint: "http://192.168.146.52:4000", 
+            endpoint: "http://192.168.146.52:4000",
             // endpoint: "http://192.168.146.94:4000",
             socket: '',
             user: 'anonyme',
+            isLogged: false,
             discussion: [],
             tickets: [],
             chatActiv: false,
             ticketActiv: -1,
+            logUser: this.logUser,
             startCollab: this.startCollab,
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
             sendMessage: this.sendMessage
         }
+    }
+
+    logUser = (user) => {
+        this.setState({
+            isLogged: true,
+            user: `${user.firstname} ${user.lastname}`
+        })
     }
 
     startCollab = (name) => {
@@ -56,7 +65,7 @@ class SocketProvider extends Component {
     openChannel = () => {
         this.state.socket.emit('waiting room', this.channel)
         this.state.socket.on('waiting room', object => {
-            if(typeof(object)==='object'){
+            if (typeof (object) === 'object') {
                 this.setState({ discussion: [...this.state.discussion, object] })
                 if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
             }
@@ -67,8 +76,8 @@ class SocketProvider extends Component {
     }
 
     closeChat = () => {
-        this.setState({ chatActiv: false, ticketActiv: -1, discussion : [] })
-        this.state.socket.emit('leave room', {channel: this.channel, clientId: this.clientId})
+        this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
+        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
     }
 
     getTicket = () => {
@@ -86,7 +95,7 @@ class SocketProvider extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({socket: socketIOClient(this.state.endpoint)})
+        this.setState({ socket: socketIOClient(this.state.endpoint) })
         this.getTicket()
     }
 

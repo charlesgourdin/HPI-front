@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { SocketContext } from '../providers/SocketContext';
 import axios from 'axios';
-import { MDBCol } from 'mdbreact';
+import { MDBCol, MDBIcon } from 'mdbreact';
+import { useHistory } from 'react-router-dom';
 
 const AccueilPsy = () => {
 
-    const { endpoint } = useContext(SocketContext)
-    const [data, updateData] = useState({ email: '', password: '' })
+    const { endpoint, logUser } = useContext(SocketContext);
+    const [data, updateData] = useState({ email: '', password: '' });
+    const [error, setError] = useState([false, ''])
+    let history = useHistory();
 
     const updateField = (event) => {
         updateData(Object.assign(data, { [event.target.name]: event.target.value }))
@@ -17,10 +20,15 @@ const AccueilPsy = () => {
 
         axios.post(`${endpoint}/users/auth/admin`, { data })
             .then(res => {
-                console.log(res.status)
                 if (res.status === 200) {
-                    
+                    logUser(res.data[0])
                 }
+            })
+            .then(() => {
+                history.replace('/psy')
+            })
+            .catch(err => {
+                setError([true, err.response.data.message])
             })
     }
 
@@ -55,6 +63,22 @@ const AccueilPsy = () => {
                     </div>
                 </form>
             </MDBCol>
+            {error[0]
+                ?
+                <div className='z-depth-2 d-flex justify-content-center align-items-center'
+                    style={{
+                        width: '400px',
+                        height: '40px',
+                        borderRadius: '8px',
+                        opacity: '0.8'
+                    }}>
+                    <p className='m-0' style={{ fontWeight: 'bold' }}>
+                        <MDBIcon icon="times-circle" size="1x" className="red-text mr-3" />
+                          {error[1]}
+                    </p>
+                </div>
+                : null
+            }
         </div>
     )
 
