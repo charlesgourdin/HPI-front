@@ -9,8 +9,9 @@ class SocketProvider extends Component {
         this.channel = '';
         this.clientId = '';
         this.state = {
-            endpoint: "http://192.168.146.52:4000", 
-            // endpoint: "http://192.168.146.94:4000",
+            // endpoint: "http://192.168.146.52:4000", 
+            endpoint: "http://192.168.146.94:4000",
+            // endpoint: "http://192.168.1.12:4000",
             socket: '',
             user: 'anonyme',
             discussion: [],
@@ -41,7 +42,7 @@ class SocketProvider extends Component {
                     this.state.socket.emit('waiting room', this.channel)
                     this.state.socket.on('waiting room', object => {
                         this.setState({ discussion: [...this.state.discussion, object] })
-                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                        // document.getElementById("to_autoscroll").scrollBy(0, 10000)
                     })
                 })
         })
@@ -50,7 +51,6 @@ class SocketProvider extends Component {
     openChat = (i, channel) => {
         this.setState({ chatActiv: true, ticketActiv: i })
         this.channel = channel
-
     }
 
     openChannel = () => {

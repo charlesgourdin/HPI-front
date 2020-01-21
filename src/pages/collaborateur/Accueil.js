@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { SocketContext } from '../providers/SocketContext'
+import { SocketContext } from '../../providers/SocketContext'
 import { MDBCol } from 'mdbreact'
 
-const AccueilCollab = () => {
+const Accueil = () => {
 
     const { startCollab } = useContext(SocketContext)
     const [name, changeName] = useState('anonyme')
@@ -47,4 +47,4 @@ const AccueilCollab = () => {
     )
 }
 
-export default AccueilCollab;
+export default Accueil;
