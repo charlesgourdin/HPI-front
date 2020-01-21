@@ -13,6 +13,7 @@ class SocketProvider extends Component {
             // endpoint: "http://192.168.146.94:4000",
             socket: '',
             user: 'anonyme',
+            token: '',
             isLogged: false,
             discussion: [],
             tickets: [],
@@ -30,7 +31,8 @@ class SocketProvider extends Component {
     logUser = (user) => {
         this.setState({
             isLogged: true,
-            user: `${user.firstname} ${user.lastname}`
+            user: user.username,
+            token: user.token
         })
     }
 

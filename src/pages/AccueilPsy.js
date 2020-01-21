@@ -21,7 +21,9 @@ const AccueilPsy = () => {
         axios.post(`${endpoint}/users/auth/admin`, { data })
             .then(res => {
                 if (res.status === 200) {
-                    logUser(res.data[0])
+                    logUser(res.data)
+                    localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('username', res.data.username)
                 }
             })
             .then(() => {
@@ -63,22 +65,21 @@ const AccueilPsy = () => {
                     </div>
                 </form>
             </MDBCol>
-            {error[0]
-                ?
-                <div className='z-depth-2 d-flex justify-content-center align-items-center'
-                    style={{
-                        width: '400px',
-                        height: '40px',
-                        borderRadius: '8px',
-                        opacity: '0.8'
-                    }}>
-                    <p className='m-0' style={{ fontWeight: 'bold' }}>
-                        <MDBIcon icon="times-circle" size="1x" className="red-text mr-3" />
-                          {error[1]}
-                    </p>
-                </div>
-                : null
-            }
+
+            <div className='z-depth-2'
+                style={{
+                    display: error[0] ? 'flex' : 'none',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: '400px',
+                    height: '40px',
+                    borderRadius: '8px',
+                }}>
+                <p className='m-0' style={{ fontWeight: 'bold' }}>
+                    <MDBIcon icon="times-circle" size="1x" className="red-text mr-3" />
+                    {error[1]}
+                </p>
+            </div>
         </div>
     )
 

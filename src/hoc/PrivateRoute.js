@@ -4,9 +4,17 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = (props) => {
 
-    const { isLogged } = useContext(SocketContext)
+    const { isLogged, logUser } = useContext(SocketContext)
 
-    if (isLogged) {
+    if (!isLogged) {
+        const data = {
+            token: localStorage.getItem('token'),
+            username: localStorage.getItem('username')
+        }
+        logUser(data)
+    }
+
+    if (isLogged || localStorage.getItem('token')) {
         return <Route {...props} />
     } else {
         return <Redirect to='/' />
