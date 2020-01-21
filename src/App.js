@@ -23,58 +23,40 @@ const Authorized = () => {
 const Unauthorized = () => {
   if ((!id || !token) || (id && token)) 
     return (
-      <>
-        <div 
-          className="d-flex h-100 w-100 align-items-center justify-content-center"
-          id='app-unauthorized' style={{ display: (checkTokenValue === 'admin') ? '' : 'none' }}
+      <div className="d-flex h-100 w-100 align-items-center justify-content-center">
+        <Link to={'/admin'}>
+          <MDBBtn 
+            type="button"
+            outline 
+            color="primary"
+            className='position-absolute fixed-top secondary_button '
+            style={{borderRadius: '10em'}}
           >
-          <Link to={'/admin'}>
-            <MDBBtn 
-              type="button"
-              outline 
-              color="primary"
-              onClick={() => HideAdminButton()}
-              className='position-absolute fixed-top secondary_button '
-              style={{borderRadius: '10em'}}
-            >
-              Admin
-            </MDBBtn>
-          </Link>
-          <h3>La page que vous cherchez n'existe pas.</h3>
-        </div>
-      </>
+            Admin
+          </MDBBtn>
+        </Link>
+        <h3>La page que vous cherchez n'existe pas.</h3>
+      </div>
     )
-}
-
-const HideAdminButton = () => {
-  const doc = document.getElementById('app-unauthorized')
-  doc.style.visibility = 'hidden'
-  doc.style.display = 'none'
-  console.log(doc)
 }
 
 async function CheckToken() {
   const { endpoint } = useContext(SocketContext)
-    await axios.get(`${endpoint}/tickets?token=${token}`)
-      .then(response => response.data)
-      .then(data => {
-        if (data.id.toString() === id.toString()) {
-          checkTokenValue = true; 
-        } else {
-          checkTokenValue = 'admin'
-        }
-      })
-      .catch((error) => {
-        checkTokenValue = 'admin'
-        // console.log("Erreur:", error)
-      });
+  await axios.get(`${endpoint}/tickets?token=${token}`)
+    .then(response => response.data)
+    .then(data => {
+      if (data.id.toString() === id.toString()) {
+        checkTokenValue = true; 
+      }
+    })
+    .catch((error) => {
+      // console.log("Erreur:", error)
+    });
   return checkTokenValue;
 }
 
 function App() {
   CheckToken()
-  if (token && id) console.log("1")
-  if (!token || !id) console.log("2")
   return (
     <div 
       style={{
@@ -86,7 +68,6 @@ function App() {
     >
       <BrowserRouter>
         <Switch>
-
           <Route exact path='/admin' component={AccueilPsy} />
           <Route path='/admin/tickets' component={Psychologue} />
           {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}

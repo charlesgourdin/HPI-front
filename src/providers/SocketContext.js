@@ -51,7 +51,6 @@ class SocketProvider extends Component {
     openChat = (i, channel) => {
         this.setState({ chatActiv: true, ticketActiv: i })
         this.channel = channel
-
     }
 
     openChannel = () => {
