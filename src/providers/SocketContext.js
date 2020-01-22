@@ -49,7 +49,7 @@ class SocketProvider extends Component {
                     this.state.socket.emit('waiting room', this.channel)
                     this.state.socket.on('waiting room', object => {
                         this.setState({ discussion: [...this.state.discussion, object] })
-                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                        // document.getElementById("to_autoscroll").scrollBy(0, 10000)
                     })
                 })
         })
@@ -58,7 +58,6 @@ class SocketProvider extends Component {
     openChat = (i, channel) => {
         this.setState({ chatActiv: true, ticketActiv: i })
         this.channel = channel
-
     }
 
     openChannel = () => {

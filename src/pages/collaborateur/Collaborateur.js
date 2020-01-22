@@ -3,7 +3,7 @@ import {
     MDBCol,
     MDBRow
 } from 'mdbreact';
-import ChatBoxCollab from '../components/ChatBoxCollab';
+import ChatBoxCollab from '../../components/collaborateur/ChatBoxCollab';
 
 const Collaborateur = () => {
 
