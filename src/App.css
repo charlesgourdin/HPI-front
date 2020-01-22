@@ -9,7 +9,7 @@ h2, p {
 .primary_button{
   background-color: #236fff;
   width: 128px;
-  height: 52px;
+  height: 40px;
   border-radius: 20px;
   border: 0px;
   margin: 16px;
@@ -37,7 +37,7 @@ h2, p {
 .danger_button{
   background-color: #b00020;
   width: 128px;
-  height: 52px;
+  height: 40px;
   border-radius: 20px;
   border: 0px;
   margin: 16px;
@@ -65,14 +65,14 @@ h2, p {
 .secondary_button{
   background-color: white;
   width: 128px;
-  height: 52px;
+  height: 40px;
   border-radius: 20px;
   border: 0px;
   margin: 16px;
   color: #236fff;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: 0.1em;
   text-decoration: none;
 }
@@ -144,6 +144,11 @@ h2, p {
 .ticketInactiv p{
   color: lightgrey;
   margin: 0;
+}
+
+input{
+  border: none;
+  outline: none;
 }
 
 input:focus{
