@@ -52,12 +52,12 @@ const AccueilPsy = () => {
                     <label htmlFor='email' className='white-text'>
                         Your email
                   </label>
-                    <input type='email' id='email' name='email' className='form-control' onChange={updateField} />
+                    <input style={{borderRadius: '20px'}} type='email' id='email' name='email' className='form-control' onChange={updateField} />
                     <br />
                     <label htmlFor='password' className='white-text'>
                         Your password
                   </label>
-                    <input type='password' id='password' name='password' className='form-control' onChange={updateField} />
+                    <input style={{borderRadius: '20px'}} type='password' id='password' name='password' className='form-control' onChange={updateField} />
                     <div className='text-center mt-4'>
                         <button className='secondary_button' style={{ width: '200px' }} type='submit' onClick={handleSubmit} >
                             Login
@@ -66,17 +66,17 @@ const AccueilPsy = () => {
                 </form>
             </MDBCol>
 
-            <div className='z-depth-2'
+            <div className='z-depth-1'
                 style={{
                     display: error[0] ? 'flex' : 'none',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    width: '400px',
                     height: '40px',
                     borderRadius: '8px',
+                    backgroundColor: '#f8e5e8'
                 }}>
-                <p className='m-0' style={{ fontWeight: 'bold' }}>
-                    <MDBIcon icon="times-circle" size="1x" className="red-text mr-3" />
+                <p className='m-0' style={{color:'#b00020', padding: '0 24px 0 24px' }}>
+                    <MDBIcon icon="exclamation-triangle" size="1x" className="#b00020-text mr-3" />
                     {error[1]}
                 </p>
             </div>

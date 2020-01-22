@@ -23,8 +23,8 @@ const ChatBoxPsy = () => {
                             Ouvrir ce ticket?
                 </h2>
                         <div>
-                            <button className='primary_button' onClick={() => { validInChat(true); openChannel() }}>Oui</button>
-                            <button className='danger_button' onClick={() => closeChat()}>Non</button>
+                            <button className='secondary_button z-depth-1' onClick={() => closeChat()}>Annuler</button>
+                            <button className='primary_button z-depth-1' onClick={() => { validInChat(true); openChannel() }}>Confirmer</button>
                         </div>
                     </div>
                 </div>
@@ -33,9 +33,9 @@ const ChatBoxPsy = () => {
                     borderRadius: '10px',
                     position: 'relative'
                 }}>
-                    <button className='danger_button' style={{ width: '200px', alignSelf: 'flex-start', marginBottom: '0' }} onClick={() => validOutChat(true)}>Terminer la discussion</button>
+                    <button className='danger_button z-depth-1' style={{ width: '200px', alignSelf: 'flex-start', marginBottom: '0' }} onClick={() => validOutChat(true)}>Terminer la discussion</button>
                     <div style={{ width: '100%' }}><hr /></div>
-                    <ConversWindow/>
+                    <ConversWindow />
                     <PostMessage />
                     {
                         outChat &&
@@ -45,7 +45,7 @@ const ChatBoxPsy = () => {
                                 position: 'absolute'
                             }}
                         >
-                            <div className='w-50 z-depth-1 d-flex flex-column justify-content-around align-items-center' style={{ height: '150px', borderRadius: '8px', minWidth: '350px', background:'white', opacity:'0.9' }}>
+                            <div className='w-50 z-depth-1 d-flex flex-column justify-content-around align-items-center' style={{ height: '150px', borderRadius: '8px', minWidth: '350px', background: 'white', opacity: '0.9' }}>
                                 <h2 style={{
                                     textAlign: 'center',
                                     color: 'black',
@@ -54,8 +54,8 @@ const ChatBoxPsy = () => {
                                     Clôturer ce ticket?
                                 </h2>
                                 <div>
-                                    <button className='primary_button' onClick={() => {closeChat()}}>Oui</button>
-                                    <button className='danger_button' onClick={() => validOutChat(false)}>Non</button>
+                                    <button className='secondary_button z-depth-1' onClick={() => validOutChat(false)}>Annuler</button>
+                                    <button className='primary_button z-depth-1' onClick={() => { closeChat() }}>Confirmer</button>
                                 </div>
                             </div>
                         </div>

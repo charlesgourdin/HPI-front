@@ -26,7 +26,9 @@ const Accueil = () => {
                     <label htmlFor='defaultFormLoginEmailEx' className='white-text'>
                         Votre pseudo
                   </label>
-                    <input type='text'
+                    <input
+                        style={{ borderRadius: '20px' }}
+                        type='text'
                         id='user'
                         name='user'
                         onChange={e => changeName(e.target.value)}
@@ -35,9 +37,9 @@ const Accueil = () => {
                     <div className='text-center mt-4'>
                         <Link to={'/collab'}><button
                             className='secondary_button'
-                            style={{width: '200px'}}
+                            style={{ width: '200px' }}
                             type='submit'
-                            onClick={() => {startCollab(name)}}>
+                            onClick={() => { startCollab(name) }}>
                             Lancer la conversation
                     </button></Link>
                     </div>

@@ -14,11 +14,6 @@ const PrivateRoute = (props) => {
 export default PrivateRoute
 
 
-
-
-
-
-
 //NE PAS ENLEVER POUR L'INSTANT!!!
 
 // const PublicRoute = (MonComp)=>{

@@ -15,11 +15,12 @@ const PostMessage = () => {
         }}>
                 <form className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'> 
                     <input
-                        className='h-75 rounded-lg w-100'
+                        className='rounded-lg w-100'
                         style={{
                             border: '1px rgb(146, 146, 146) solid',
                             fontFamily: `'Roboto', sans-serif`,
-                            padding: '12px'
+                            padding: '12px',
+                            height: '65%'
                         }}
                         type="text"
                         id="message"
@@ -29,7 +30,7 @@ const PostMessage = () => {
                         value={msg}
                     />
                     <button
-                        className='primary_button'
+                        className='primary_button z-depth-1'
                         type="submit"
                         onClick={(event) => {
                             event.preventDefault()
