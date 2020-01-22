@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { SocketContext } from '../providers/SocketContext'
 import {
     MDBCol,
@@ -10,8 +10,11 @@ import MenuPsy from '../components/MenuPsy';
 
 const Psychologue = () => {
 
-    const { chatActiv } = useContext(SocketContext)
+    const { chatActiv , getTicket} = useContext(SocketContext)
 
+    useEffect(()=>{
+        getTicket()
+    }, [getTicket])
 
     return (
         <div className='d-flex h-100 justify-content-center' style={{}}>

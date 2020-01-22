@@ -8,6 +8,7 @@ import Accueil from './pages/collaborateur/Accueil';
 import Collaborateur from './pages/collaborateur/Collaborateur';
 import AccueilPsy from './pages/AccueilPsy';
 import Psychologue from './pages/Psychologue';
+import PrivateRoute from './hoc/PrivateRoute';
 import { SocketContext } from './providers/SocketContext'
 
 
@@ -74,7 +75,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path='/admin' component={AccueilPsy} />
-          <Route path='/admin/tickets' component={Psychologue} />
+          <PrivateRoute path='/psy' component={Psychologue} />
           {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
         </Switch>
       </BrowserRouter>
