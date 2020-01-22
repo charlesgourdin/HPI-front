@@ -10,9 +10,10 @@ class SocketProvider extends Component {
         this.clientId = '';
         this.token = localStorage.getItem("token") || null;
         this.state = {
-            endpoint: "http://192.168.146.52:4000",
-            // endpoint: "http://192.168.146.94:4000",
-            socket: socketIOClient("http://192.168.146.52:4000"),
+            // endpoint: "http://192.168.146.52:4000",
+            endpoint: "http://192.168.146.94:4000",
+            // socket: socketIOClient("http://192.168.146.52:4000"),
+            socket: socketIOClient("http://192.168.146.94:4000"),
             user: localStorage.getItem("username") || 'anonyme',
             isLogged: false,
             discussion: [],
