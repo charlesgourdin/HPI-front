@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SocketContext } from '../providers/SocketContext'
+import { SocketContext } from '../../providers/SocketContext'
 import Moment from 'react-moment'
 
 // const ticketModel = [

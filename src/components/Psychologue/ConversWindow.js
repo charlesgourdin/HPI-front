@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { SocketContext } from '../providers/SocketContext'
-import './ConversWindow.css';
+import { SocketContext } from '../../providers/SocketContext'
+import '../ConversWindow.css';
 import Moment from 'react-moment'
 
 const ConversWindow = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import hpiLogo from '../assets/hpiLogo.png'
+import hpiLogo from '../../assets/hpiLogo.png'
 
 const MenuPsy = () => {
 

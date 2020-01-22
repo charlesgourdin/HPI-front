@@ -4,9 +4,9 @@ import {
     MDBCol,
     MDBRow
 } from 'mdbreact';
-import ChatBoxPsy from '../components/ChatBoxPsy';
-import TicketFill from '../components/TicketFill';
-import MenuPsy from '../components/MenuPsy';
+import ChatBoxPsy from '../components/Psychologue/ChatBoxPsy';
+import TicketFill from '../components/Psychologue/TicketFill';
+import MenuPsy from '../components/Psychologue/MenuPsy';
 
 const Psychologue = () => {
 

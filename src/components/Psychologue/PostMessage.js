@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { SocketContext } from '../providers/SocketContext'
+import { SocketContext } from '../../providers/SocketContext'
 
 const PostMessage = () => {
 
