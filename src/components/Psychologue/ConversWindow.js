@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { SocketContext } from '../../providers/SocketContext'
+import { PsychologueContext } from '../../providers/PsychologueContext'
 import '../ConversWindow.css';
 import Moment from 'react-moment'
 
 const ConversWindow = () => {
 
-    const { user, discussion } = useContext(SocketContext)
+    const { user, discussion } = useContext(PsychologueContext)
 
     
 

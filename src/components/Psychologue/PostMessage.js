@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { SocketContext } from '../../providers/SocketContext'
+import { PsychologueContext } from '../../providers/PsychologueContext'
 
 const PostMessage = () => {
 
-    const { sendMessage } = useContext(SocketContext)
+    const { sendMessage } = useContext(PsychologueContext)
     const [msg, changeMsg] = useState('')
 
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { SocketContext } from '../../providers/SocketContext'
+import { PsychologueContext } from '../../providers/PsychologueContext'
 import ConversWindow from './ConversWindow';
 import PostMessage from './PostMessage';
 
@@ -7,7 +7,7 @@ const ChatBoxPsy = () => {
 
     const [inChat, validInChat] = useState(false)
     const [outChat, validOutChat] = useState(false)
-    const { openChannel, closeChat } = useContext(SocketContext)
+    const { openChannel, closeChat } = useContext(PsychologueContext)
 
 
     return (

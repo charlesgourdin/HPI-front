@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { SocketContext } from '../../providers/SocketContext'
+import { CollaborateurContext } from '../../providers/CollaborateurContext'
 
 const PostMessage = () => {
 
-    const { sendMessage } = useContext(SocketContext)
+    const { sendMessage } = useContext(CollaborateurContext)
     const [msg, changeMsg] = useState('')
 
 

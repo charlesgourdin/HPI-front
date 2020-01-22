@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom'
-import { SocketContext } from '../../providers/SocketContext'
+import { CollaborateurContext } from '../../providers/CollaborateurContext'
 import { MDBCol } from 'mdbreact'
 
 const Accueil = () => {
 
-    const { startCollab } = useContext(SocketContext)
+    const { startCollab } = useContext(CollaborateurContext)
     const [name, changeName] = useState('anonyme')
 
     return (

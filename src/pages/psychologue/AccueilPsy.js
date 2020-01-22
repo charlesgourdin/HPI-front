@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { SocketContext } from '../providers/SocketContext';
+import { PsychologueContext } from '../../providers/PsychologueContext';
 import axios from 'axios';
 import { MDBCol, MDBIcon } from 'mdbreact';
 import { useHistory } from 'react-router-dom';
 
 const AccueilPsy = () => {
 
-    const { endpoint, setToken } = useContext(SocketContext);
+    const { endpoint, setToken } = useContext(PsychologueContext);
     const [data, updateData] = useState({ email: '', password: '' });
     const [error, setError] = useState([false, ''])
     let history = useHistory();

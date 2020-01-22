@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { SocketContext } from '../providers/SocketContext'
+import { PsychologueContext } from '../../providers/PsychologueContext'
 import {
     MDBCol,
     MDBRow
 } from 'mdbreact';
-import ChatBoxPsy from '../components/Psychologue/ChatBoxPsy';
-import TicketFill from '../components/Psychologue/TicketFill';
-import MenuPsy from '../components/Psychologue/MenuPsy';
+import ChatBoxPsy from '../../components/Psychologue/ChatBoxPsy';
+import TicketFill from '../../components/Psychologue/TicketFill';
+import MenuPsy from '../../components/Psychologue/MenuPsy';
 
 const Psychologue = () => {
 
-    const { chatActiv , getTicket} = useContext(SocketContext)
+    const { chatActiv , getTicket} = useContext(PsychologueContext)
 
     useEffect(()=>{
         getTicket()
