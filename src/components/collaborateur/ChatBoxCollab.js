@@ -1,6 +1,6 @@
 import React from 'react'
-import ConversWindow from '../ConversWindow';
-import PostMessage from '../PostMessage';
+import ConversWindow from './ConversWindow';
+import PostMessage from './PostMessage';
 
 const ChatBoxCollab = () => {
 

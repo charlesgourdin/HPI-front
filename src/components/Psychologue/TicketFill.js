@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { SocketContext } from '../providers/SocketContext'
+import { PsychologueContext } from '../../providers/PsychologueContext'
 import Moment from 'react-moment'
 
 // const ticketModel = [
@@ -32,7 +32,7 @@ import Moment from 'react-moment'
 
 const TicketFill = () => {
 
-    const { openChat, ticketActiv, tickets } = useContext(SocketContext)
+    const { openChat, ticketActiv, tickets } = useContext(PsychologueContext)
 
     const displayTcketStyle = (i, ticketActiv) => {
         if (ticketActiv === i) {

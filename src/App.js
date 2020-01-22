@@ -6,21 +6,23 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accueil from './pages/collaborateur/Accueil';
 import Collaborateur from './pages/collaborateur/Collaborateur';
-import AccueilPsy from './pages/AccueilPsy';
-import Psychologue from './pages/Psychologue';
+import AccueilPsy from './pages/psychologue/AccueilPsy';
+import Psychologue from './pages/psychologue/Psychologue';
 import PrivateRoute from './hoc/PrivateRoute';
-import { SocketContext } from './providers/SocketContext'
+import { GlobalContext } from './providers/GlobalContext'
+import PsychologueProvider from './providers/PsychologueContext';
+import CollaborateurProvider from './providers/CollaborateurContext';
 
 
 function App() {
-  const { endpoint } = useContext(SocketContext)
+  const { endpoint } = useContext(GlobalContext)
   const params = (new URL(document.location)).searchParams;
   const token = params.get('token');
   const id = params.get('id');
   const [checkTokenValue, setCheckTokenValue] = useState(false)
 
   useEffect(() => {
-    CheckToken().then(val=>setCheckTokenValue(val))
+    CheckToken().then(val => setCheckTokenValue(val))
   }, [])
 
   const CheckToken = async () => {
@@ -72,11 +74,15 @@ function App() {
       }}
     >
       <BrowserRouter>
+        <PsychologueProvider endpoint={endpoint}>
+        <CollaborateurProvider endpoint={endpoint}>
         <Switch>
           <Route exact path='/admin' component={AccueilPsy} />
           <PrivateRoute path='/psy' component={Psychologue} />
           {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
         </Switch>
+        </CollaborateurProvider>
+        </PsychologueProvider>
       </BrowserRouter>
     </div>
   );

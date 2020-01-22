@@ -5,13 +5,13 @@ import App from './App';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
-import SocketProvider from './providers/SocketContext';
+import GlobalProvider from './providers/GlobalContext';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <SocketProvider>
+  <GlobalProvider>
     <App/>
-  </SocketProvider>, 
+  </GlobalProvider>, 
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
