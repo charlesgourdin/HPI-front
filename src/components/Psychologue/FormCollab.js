@@ -31,48 +31,48 @@ class FormCollab extends Component {
           style={form_collab_anonymous}
         >
           <input 
-            gap 
+            // gap 
             className="custom-control-input" 
             id="form-collab_anonymous" 
             type="checkbox" 
-            onClick={() => this.setState({anonymous: !this.state.anonymous})}
+            onChange={() => this.setState({anonymous: !this.state.anonymous})}
           />
-          <label class="custom-control-label" for="form-collab_anonymous">Anonyme</label>
+          <label className="custom-control-label" htmlFor="form-collab_anonymous">Anonyme</label>
         </div>  
   
         <div className='form-row pl-4 pl-md-0 text-md-center'>
           <div className='form-col col-md-4'>
             <input 
-              gap
+              // gap
               checked={this.state.radio_gender === "m" ? true : false}
-              class="custom-control-input" 
+              className="custom-control-input" 
               id="form-collab_m" 
               type="radio" 
-              onClick={() => this.setState({radio_gender: "m"})}
+              onChange={() => this.setState({radio_gender: "m"})}
             />
-            <label class="custom-control-label" for="form-collab_m">Homme</label>
+            <label className="custom-control-label" htmlFor="form-collab_m">Homme</label>
           </div>
           <div className='form-col col-md-4'>
             <input 
               // gap 
               checked={this.state.radio_gender === "f" ? true : false}
-              class="custom-control-input" 
+              className="custom-control-input" 
               id="form-collab_f" 
               type="radio" 
-              onClick={()=>this.setState({radio_gender: "f"})}
+              onChange={()=>this.setState({radio_gender: "f"})}
             />
-            <label class="custom-control-label" for="form-collab_f">Femme</label>
+            <label className="custom-control-label" htmlFor="form-collab_f">Femme</label>
           </div>
           <div className='form-col col-md-4'>
             <input 
-              gap 
+              // gap 
               checked={this.state.radio_gender === "np" ? true : false}
-              class="custom-control-input" 
+              className="custom-control-input" 
               id="form-collab_np" 
               type="radio" 
-              onClick={()=>this.setState({radio_gender: "np"})}
+              onChange={()=>this.setState({radio_gender: "np"})}
             />
-            <label class="custom-control-label" for="form-collab_np">Non précisé</label>
+            <label className="custom-control-label" htmlFor="form-collab_np">Non précisé</label>
           </div>
         </div>     
         <div className='form-row mt-2'>

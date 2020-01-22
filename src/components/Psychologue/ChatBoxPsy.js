@@ -7,7 +7,7 @@ const ChatBoxPsy = () => {
 
     const [inChat, validInChat] = useState(false)
     const [outChat, validOutChat] = useState(false)
-    const { openChannel, closeChat } = useContext(PsychologueContext)
+    const { openChannel, closeChat, closeTicket } = useContext(PsychologueContext)
 
 
     return (
@@ -45,17 +45,19 @@ const ChatBoxPsy = () => {
                                 position: 'absolute'
                             }}
                         >
-                            <div className='w-50 z-depth-1 d-flex flex-column justify-content-around align-items-center' style={{ height: '150px', borderRadius: '8px', minWidth: '350px', background: 'white', opacity: '0.9' }}>
+                            <div className='z-depth-3 d-flex flex-column justify-content-around align-items-center' style={{ borderRadius: '8px', background: 'white' }}>
                                 <h2 style={{
                                     textAlign: 'center',
                                     color: 'black',
                                     margin: '12px 0 0 0',
+                                    padding: '24px'
                                 }}>
-                                    Clôturer ce ticket?
+                                    Terminer la discussion?
                                 </h2>
-                                <div>
-                                    <button className='secondary_button z-depth-1' onClick={() => validOutChat(false)}>Annuler</button>
-                                    <button className='primary_button z-depth-1' onClick={() => { closeChat() }}>Confirmer</button>
+                                <div className='d-flex flex-column'>
+                                    <button className='primary_button z-depth-1' style={{ width: '300px' }} onClick={() => { closeChat() }}>Suspendre le ticket</button>
+                                    <button className='danger_button z-depth-1' style={{ width: '300px' }} onClick={() => { closeTicket() }}>Clôturer le ticket</button>
+                                    <button className='secondary_button z-depth-1' style={{ width: '300px' }} onClick={() => validOutChat(false)}>Annuler</button>
                                 </div>
                             </div>
                         </div>

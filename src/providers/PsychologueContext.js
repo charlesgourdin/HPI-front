@@ -10,17 +10,21 @@ class PsychologueProvider extends Component {
         this.clientId = '';
         this.token = localStorage.getItem("token") || null;
         this.state = {
+            endpoint: this.props.endpoint,
             socket: socketIOClient(`${this.props.endpoint}`),
             user: localStorage.getItem("username") || 'anonyme',
             isLogged: false,
             discussion: [],
             tickets: [],
             chatActiv: false,
+            formActiv: false,
             ticketActiv: -1,
             getTicket: this.getTicket,
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
+            closeTicket: this.closeTicket,
+            sendForm: this.sendForm,
             sendMessage: this.sendMessage,
             setToken: this.setToken
         }
@@ -42,6 +46,15 @@ class PsychologueProvider extends Component {
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
+        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+    }
+
+    closeTicket = () => {
+        this.setState({chatActiv: !this.state.chatActiv, formActiv: !this.state.formActiv})
+    }
+
+    sendForm = () =>{
+        this.setState({formActiv: false, ticketActiv: -1, discussion: [] })
         this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
     }
 

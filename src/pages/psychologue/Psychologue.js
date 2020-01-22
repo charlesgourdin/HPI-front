@@ -7,12 +7,13 @@ import {
 import ChatBoxPsy from '../../components/Psychologue/ChatBoxPsy';
 import TicketFill from '../../components/Psychologue/TicketFill';
 import MenuPsy from '../../components/Psychologue/MenuPsy';
+import FormEndCall from './FormEndCall';
 
 const Psychologue = () => {
 
-    const { chatActiv , getTicket} = useContext(PsychologueContext)
+    const { chatActiv, formActiv, getTicket } = useContext(PsychologueContext)
 
-    useEffect(()=>{
+    useEffect(() => {
         getTicket()
     }, [getTicket])
 
@@ -31,6 +32,7 @@ const Psychologue = () => {
                 </MDBCol>
                 <MDBCol className='h-100 p-3' size='6' md='7' xl='8'>
                     {chatActiv && <ChatBoxPsy />}
+                    {formActiv && <FormEndCall />}
                 </MDBCol>
             </MDBRow>
         </div>

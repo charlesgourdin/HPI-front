@@ -1,29 +1,34 @@
-import React from 'react';
-import FormPsy from '../components/FormPsy';
-import FormCollab from '../components/FormCollab';
-import FormConversation from '../components/FormConversation';
-import FormComment from '../components/FormComment';
-import { MDBCol, MDBBtn } from 'mdbreact';
+import React, { useContext } from 'react';
+import { PsychologueContext } from '../../providers/PsychologueContext'
+import FormPsy from '../../components/Psychologue/FormPsy';
+import FormCollab from '../../components/Psychologue/FormCollab';
+import FormConversation from '../../components/Psychologue/FormConversation';
+import FormComment from '../../components/Psychologue/FormComment';
+import { MDBCol } from 'mdbreact';
 
 
 const FormEndCall = () => {
-  return(
-    <div className="d-md-flex">
+
+  const { sendForm, closeTicket } = useContext(PsychologueContext)
+
+  return (
+    <div className="d-md-flex py-4 h-100 rounded z-depth-1" >
       <MDBCol md='6' tag='section'>
         <FormPsy />
         <FormCollab />
         <FormConversation />
       </MDBCol>
 
-      <MDBCol md='6' tag='section'>
+      <MDBCol md='6' tag='section' className='d-flex flex-column'>
         <FormComment />
-        <div className="text-right">
-          <MDBBtn color="red text-right">Annuler</MDBBtn>
-          <MDBBtn color="dark-green text-right">Valider</MDBBtn>
+        <div className="text-right mt-auto">
+          {/* <button className='secondary_button z-depth-1' onClick={() => closeTicket()}>Annuler</button> */}
+          <button className='primary_button z-depth-1' onClick={() => sendForm()}>Envoyer</button>
         </div>
       </MDBCol>
 
     </div>
-  )}
+  )
+}
 
 export default FormEndCall;
