@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { MDBBtn } from 'mdbreact';
@@ -12,59 +12,58 @@ import PrivateRoute from './hoc/PrivateRoute';
 import { SocketContext } from './providers/SocketContext'
 
 
-const params = (new URL(document.location)).searchParams;
-const token = params.get('token');
-const id = params.get('id');
-let checkTokenValue = null;
-
-const Authorized = () => {
-  return (
-    <>
-      <Route exact path='/' component={Accueil} />
-      <Route exact path='/collab' component={Collaborateur} />
-    </>
-  );
-}
-
-const Unauthorized = () => {
-  if ((!id || !token) || (id && token)) 
-    return (
-      <div className="d-flex h-100 w-100 align-items-center justify-content-center">
-        <Link to={'/admin'}>
-          <MDBBtn 
-            type="button"
-            outline 
-            color="primary"
-            className='position-absolute fixed-top secondary_button '
-            style={{borderRadius: '10em'}}
-          >
-            Admin
-          </MDBBtn>
-        </Link>
-        <h3>La page que vous cherchez n'existe pas.</h3>
-      </div>
-    )
-}
-
-async function CheckToken() {
-  const { endpoint } = useContext(SocketContext)
-  await axios.get(`${endpoint}/tickets?token=${token}`)
-    .then(response => response.data)
-    .then(data => {
-      if (data.id.toString() === id.toString()) {
-        checkTokenValue = true; 
-      }
-    })
-    .catch((error) => {
-      // console.log("Erreur:", error)
-    });
-  return checkTokenValue;
-}
-
 function App() {
-  CheckToken()
+  const { endpoint } = useContext(SocketContext)
+  const params = (new URL(document.location)).searchParams;
+  const token = params.get('token');
+  const id = params.get('id');
+  const [checkTokenValue, setCheckTokenValue] = useState(false)
+
+  useEffect(() => {
+    CheckToken().then(val=>setCheckTokenValue(val))
+  }, [])
+
+  const CheckToken = async () => {
+    try {
+      const { data } = await axios.get(`${endpoint}/tickets?token=${token}`)
+      return (data.id.toString() === id.toString())
+    } catch (error) {
+      console.log("Erreur:", error)
+    };
+  }
+
+  const Authorized = () => {
+    if (checkTokenValue === true)
+      return (
+        <>
+          <Route exact path='/' component={Accueil} />
+          <Route exact path='/collab' component={Collaborateur} />
+        </>
+      );
+  }
+
+  const Unauthorized = () => {
+    if ((!id || !token) || (id && token))
+      return (
+        <div className="d-flex h-100 w-100 align-items-center justify-content-center">
+          <Link to={'/admin'}>
+            <MDBBtn
+              type="button"
+              outline
+              color="primary"
+              className='position-absolute fixed-top secondary_button '
+              style={{ borderRadius: '10em' }}
+            >
+              Admin
+            </MDBBtn>
+          </Link>
+          <h3>La page que vous cherchez n'existe pas.</h3>
+        </div>
+      )
+  }
+
   return (
-    <div 
+    <div
       style={{
         height: '100vh',
         width: '100vw',
