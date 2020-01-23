@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 export const PsychologueContext = React.createContext();
 
@@ -10,9 +9,9 @@ class PsychologueProvider extends Component {
         this.clientId = '';
         this.userId = localStorage.getItem('userId') || null;
         this.token = localStorage.getItem("token") || null;
+        this.socket = this.props.socket;
         this.state = {
             endpoint: this.props.endpoint,
-            socket: socketIOClient(`${this.props.endpoint}`),
             user: localStorage.getItem("username") || 'anonyme',
             status: 'psy_online',
             isLogged: false,
@@ -22,7 +21,6 @@ class PsychologueProvider extends Component {
             chatActiv: false,
             formActiv: false,
             ticketActiv: -1,
-            setToken: this.setToken,
             changeMenu: this.changeMenu,
             putStatus: this.putStatus,
             getTicket: this.getTicket,
@@ -32,14 +30,15 @@ class PsychologueProvider extends Component {
             closeTicket: this.closeTicket,
             sendForm: this.sendForm,
             sendMessage: this.sendMessage,
-
+            setToken: this.setToken,
+            ticketId: ''
         }
     }
 
     setToken = (data) => {
         this.setState({ user: data.username })
         this.token = data.token
-        this.userId = data.userId
+        this.userId = data.id
         //Mise à jour du status du psychologue à la connexion (psy_online)
         this.putStatus('psy_online')
 
@@ -47,7 +46,7 @@ class PsychologueProvider extends Component {
 
     putStatus = (status) => {
         //Mise à jour du status du psy
-        this.setState({status: status})
+        this.setState({ status: status })
         axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
@@ -58,19 +57,19 @@ class PsychologueProvider extends Component {
         this.setState({ menuActiv: page })
     }
 
-    openChat = (i, channel) => {
-        this.setState({ chatActiv: true, ticketActiv: i })
+    openChat = (i, channel, ticketId) => {
+        this.setState({ chatActiv: true, ticketActiv: i, ticketId: ticketId })
         this.channel = channel
     }
 
     openChannel = () => {
-        this.state.socket.emit('waiting room', this.channel)
+        this.socket.emit('waiting room', this.channel)
         this.putStatus('psy_busy')
     }
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
-        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+        this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
         this.putStatus('psy_online')
     }
 
@@ -80,7 +79,7 @@ class PsychologueProvider extends Component {
 
     sendForm = () => {
         this.setState({ formActiv: false, ticketActiv: -1, discussion: [] })
-        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+        this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
         this.putStatus('psy_online')
     }
 
@@ -94,12 +93,19 @@ class PsychologueProvider extends Component {
 
     sendMessage = (message) => {
         if (message.length > 0) {
-            this.state.socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
+            this.socket.emit('message', {
+                message: message,
+                user: this.state.user,
+                channel: this.channel,
+                timestamp: Date.now(),
+                sender_id: this.userId,
+                tickets_id: this.state.ticketId
+            })
         }
     }
 
     componentDidMount = () => {
-        this.state.socket.on('waiting room', object => {
+        this.socket.on('waiting room', object => {
             if (typeof (object) === 'object') {
                 this.setState({ discussion: [...this.state.discussion, object] })
                 if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)

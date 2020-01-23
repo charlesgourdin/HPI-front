@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 export const CollaborateurContext = React.createContext();
 
@@ -8,32 +7,35 @@ class CollaborateurProvider extends Component {
         super(props)
         this.channel = '';
         this.clientId = '';
+        this.socket = this.props.socket;
+        this.tickets_id = '';
         this.state = {
-            socket: socketIOClient(`${this.props.endpoint}`),
             user:'anonyme',
-            discussion: [],
             chatActiv: false,
             ticketActiv: -1,
             startCollab: this.startCollab,
             closeChat: this.closeChat,
             sendMessage: this.sendMessage,
+            userId: this.props.userInfos.id,
+            userToken: this.props.userInfos.token,
+
         }
     }
 
     startCollab = (name) => {
-        this.setState({ user: name }, () => {
-
+        this.setState({ user: name, discussion: [] }, () => {
             axios.post(`${this.props.endpoint}/tickets/`, {
-                id: 5,
-                token: 111,
+                id: this.state.userId,
+                token: this.state.userToken,
                 pseudo: this.state.user
             })
                 .then(res => {
                     this.channel = res.data.channel
+                    this.tickets_id = res.data.tickets_id
                 })
                 .then(() => {
-                    this.state.socket.emit('waiting room', this.channel)
-                    this.state.socket.on('waiting room', object => {
+                    this.socket.emit('waiting room', this.channel)
+                    this.socket.on('waiting room', object => {
                         if (typeof (object) === 'object') {
                             this.setState({ discussion: [...this.state.discussion, object] })
                             if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
@@ -49,16 +51,25 @@ class CollaborateurProvider extends Component {
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
-        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+        this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
     }
 
     sendMessage = (message) => {
         if (message.length > 0) {
-            this.state.socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
+            this.socket.emit('message', { 
+                message: message, 
+                user: this.state.user, 
+                channel: this.channel,
+                timestamp: Date.now(),
+                sender_id: this.state.userId,
+                tickets_id: this.tickets_id
+
+            })
         }
     }
 
     componentDidMount = () => {
+
     }
 
     render() {

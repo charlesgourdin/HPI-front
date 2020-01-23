@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext';
+import { GlobalContext } from '../../providers/GlobalContext';
 import axios from 'axios';
 import { MDBCol, MDBIcon } from 'mdbreact';
 import { useHistory } from 'react-router-dom';
 
 const AccueilPsy = () => {
 
-    const { endpoint, setToken } = useContext(PsychologueContext);
+    const { setToken } = useContext(PsychologueContext);
+    const { endpoint } = useContext(GlobalContext);
     const [data, updateData] = useState({ email: '', password: '' });
     const [error, setError] = useState([false, ''])
     let history = useHistory();
@@ -17,14 +19,13 @@ const AccueilPsy = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         axios.post(`${endpoint}/users/auth/admin`, { data })
             .then(res => {
                 if (res.status === 200) {
                     setToken(res.data)
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('username', res.data.username)
-                    localStorage.setItem('userId', res.data.userId)
+                    localStorage.setItem('userId', res.data.id)
                 }
             })
             .then(() => {

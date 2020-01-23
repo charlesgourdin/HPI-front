@@ -12,10 +12,12 @@ import PrivateRoute from './hoc/PrivateRoute';
 import { GlobalContext } from './providers/GlobalContext'
 import PsychologueProvider from './providers/PsychologueContext';
 import CollaborateurProvider from './providers/CollaborateurContext';
+import socketIOClient from 'socket.io-client';
 
 
 function App() {
-  const { endpoint } = useContext(GlobalContext)
+  const { endpoint } = useContext(GlobalContext);
+  const socket = socketIOClient(endpoint);
   const params = (new URL(document.location)).searchParams;
   const token = params.get('token');
   const id = params.get('id');
@@ -31,7 +33,7 @@ function App() {
       const { data } = await axios.get(`${endpoint}/tickets?token=${token}`)
       return (data.id.toString() === id.toString())
     } catch (error) {
-      console.log("Erreur:", error)
+      // console.log("Erreur:", error)
     };
   }
 
@@ -75,8 +77,8 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <PsychologueProvider endpoint={endpoint}>
-        <CollaborateurProvider endpoint={endpoint}>
+        <PsychologueProvider endpoint={endpoint} socket={socket}>
+        <CollaborateurProvider endpoint={endpoint} socket={socket} userInfos={{id, token}} >
         <Switch>
           <Route exact path='/admin' component={AccueilPsy} />
           <PrivateRoute path='/psy' component={Psychologue} />

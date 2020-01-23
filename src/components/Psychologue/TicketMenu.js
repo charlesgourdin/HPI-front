@@ -50,7 +50,7 @@ const TicketMenu = () => {
                             return (
                                 <div
                                     className={displayTcketStyle(i, ticketActiv)}
-                                    onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i, ticket.channel) : null}
+                                    onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i, ticket.channel, ticket.id) : null}
                                     key={'ticket' + i}
                                 >
                                     <p style={{
