@@ -32,7 +32,7 @@ const Accueil = () => {
                         id='user'
                         name='user'
                         onChange={e => changeName(e.target.value)}
-                        value={name}
+                        placeholder={name}
                         className='form-control' />
                     <div className='text-center mt-4'>
                         <Link to={'/collab'}><button

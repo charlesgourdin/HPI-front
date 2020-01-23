@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 export const PsychologueContext = React.createContext();
 
@@ -9,8 +8,8 @@ class PsychologueProvider extends Component {
         this.channel = '';
         this.clientId = '';
         this.token = localStorage.getItem("token") || null;
+        this.socket = this.props.socket;
         this.state = {
-            socket: socketIOClient(`${this.props.endpoint}`),
             user: localStorage.getItem("username") || 'anonyme',
             isLogged: false,
             discussion: [],
@@ -22,7 +21,9 @@ class PsychologueProvider extends Component {
             openChannel: this.openChannel,
             closeChat: this.closeChat,
             sendMessage: this.sendMessage,
-            setToken: this.setToken
+            setToken: this.setToken,
+            ticketId: '',
+            userId: localStorage.getItem("userId") || null,
         }
     }
 
@@ -31,18 +32,18 @@ class PsychologueProvider extends Component {
         this.token = data.token
     }
 
-    openChat = (i, channel) => {
-        this.setState({ chatActiv: true, ticketActiv: i })
+    openChat = (i, channel, ticketId) => {
+        this.setState({ chatActiv: true, ticketActiv: i, ticketId: ticketId })
         this.channel = channel
     }
 
     openChannel = () => {
-        this.state.socket.emit('waiting room', this.channel)
+        this.socket.emit('waiting room', this.channel)
     }
 
     closeChat = () => {
         this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
-        this.state.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+        this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
     }
 
     getTicket = () => {
@@ -55,12 +56,19 @@ class PsychologueProvider extends Component {
 
     sendMessage = (message) => {
         if (message.length > 0) {
-            this.state.socket.emit('message', { message: message, user: this.state.user, channel: this.channel })
+            this.socket.emit('message', { 
+                message: message, 
+                user: this.state.user, 
+                channel: this.channel,
+                timestamp: Date.now(),
+                sender_id: this.state.userId,
+                tickets_id: this.state.ticketId
+            })
         }
     }
 
     componentDidMount = () => {
-        this.state.socket.on('waiting room', object => {
+        this.socket.on('waiting room', object => {
             if (typeof (object) === 'object') {
                 this.setState({ discussion: [...this.state.discussion, object] })
                 if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
