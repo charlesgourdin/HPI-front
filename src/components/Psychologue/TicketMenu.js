@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext'
 import Moment from 'react-moment'
 
-
-const TicketFill = () => {
+const TicketMenu = () => {
 
     const { openChat, ticketActiv, tickets } = useContext(PsychologueContext)
 
@@ -90,4 +89,4 @@ const TicketFill = () => {
     )
 }
 
-export default TicketFill
+export default TicketMenu

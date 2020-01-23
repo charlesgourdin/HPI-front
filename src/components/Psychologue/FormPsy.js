@@ -10,7 +10,7 @@ class FormPsy extends Component {
   render() {
     return(
       <>
-        <SectionContainer header='A propos de la conversation'>
+        <SectionContainer header='A propos de la conversation' >
           <label 
             className='mb-0'
             htmlFor='form-psy_conv'
@@ -34,7 +34,6 @@ class FormPsy extends Component {
             className='form-control form-control-sm' 
             id='form-psy_date' 
             type='date' 
-            value="" 
           />
           <div className='form-row mt-2'>
             <div className='form-col col-md'>
