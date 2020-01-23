@@ -37,7 +37,7 @@ const PostMessage = () => {
                             sendMessage(msg)
                             changeMsg('')
                         }}>
-                        CONFIRMER
+                        Envoyer
                     </button>
                 </form>
 

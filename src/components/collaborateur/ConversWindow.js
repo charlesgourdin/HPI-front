@@ -15,6 +15,7 @@ const ConversWindow = () => {
             overflowY:'scroll',
             width: '98%'
         }}>
+            {console.log(discussion)}
             {discussion.map((item, i) => {
                 return (<div className="w-75 d-flex flex-column m-2" key={i}
                     style={{ float: user === item.user ? "right" : "left" }}
@@ -24,7 +25,7 @@ const ConversWindow = () => {
                     >{item.user}</p>
                     <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                         <p className="apiMessage">{item.message}</p>
-                        <Moment format="HH:mm" style={{float:'right', fontSize:'12px'}}>à récupérer de message</Moment>
+                        <Moment format="DD/MM/YYYY - HH:mm" style={{float:'right', fontSize:'12px'}}>{discussion.timestamp}</Moment>
                     </div>
                 </div>)
             })}
