@@ -55,7 +55,6 @@ class PsychologueProvider extends Component {
     }
 
     sendMessage = (message) => {
-        console.log("ok",message)
         if (message.length > 0) {
             this.socket.emit('message', { 
                 message: message, 
@@ -63,7 +62,7 @@ class PsychologueProvider extends Component {
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.state.userId,
-                ticket_id: this.state.ticketId
+                tickets_id: this.state.ticketId
             })
         }
     }

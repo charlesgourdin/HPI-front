@@ -8,6 +8,7 @@ class CollaborateurProvider extends Component {
         this.channel = '';
         this.clientId = '';
         this.socket = this.props.socket;
+        this.tickets_id = '';
         this.state = {
             user:'anonyme',
             chatActiv: false,
@@ -30,7 +31,7 @@ class CollaborateurProvider extends Component {
             })
                 .then(res => {
                     this.channel = res.data.channel
-                    console.log("start collab", res)
+                    this.tickets_id = res.data.tickets_id
                 })
                 .then(() => {
                     this.socket.emit('waiting room', this.channel)
@@ -61,7 +62,8 @@ class CollaborateurProvider extends Component {
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.state.userId,
-                tickets_id: '' // a remplir
+                tickets_id: this.tickets_id
+
             })
         }
     }

@@ -7,8 +7,6 @@ const ConversWindow = () => {
 
     const { user, discussion } = useContext(CollaborateurContext)
 
-    
-
     return (
         <div className="mt-2 h-100" id="to_autoscroll"
         style={{
