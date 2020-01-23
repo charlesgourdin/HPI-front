@@ -24,10 +24,10 @@ const Psychologue = () => {
             <MDBRow className='w-100 h-100'>
                 <MDBCol className='h-100' size='6' md='5' xl='4'>
                     <MDBRow className='w-100 h-100'>
-                        <MDBCol className='m-0 p-0 h-100' size='4' md='4' lg='3' xl='2'>
+                        <MDBCol className='m-0 p-0 h-100' style={{maxWidth: '100px'}}size='4' md='4' lg='3' xl='3'>
                             <MenuPsy />
                         </MDBCol>
-                        <MDBCol className='m-0 p-0 h-100' size='8' md='8' lg='9' xl='10'>
+                        <MDBCol className='m-0 p-0 h-100' size='8' md='8' lg='9' xl='9'>
                             {menuActiv==='profil' && <ProfilMenu />}
                             {menuActiv==='psychologues' && <PsychoMenu />}
                             {menuActiv==='tickets' && <TicketMenu />}

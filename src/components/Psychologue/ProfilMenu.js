@@ -4,7 +4,7 @@ import { MDBIcon } from 'mdbreact';
 
 const ProfilMenu = () => {
 
-    const { user, changeStatus, status } = useContext(PsychologueContext)
+    const { user, putStatus, status } = useContext(PsychologueContext)
 
 
     return (
@@ -30,7 +30,7 @@ const ProfilMenu = () => {
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
                         style={{ border: status==='psy_online' ? '2px #36cf3e solid' : 'none' }}
-                        onClick={()=>{changeStatus('psy_online')}}>
+                        onClick={()=>{putStatus('psy_online')}}>
                         <div
                             className='voyant mx-2'
                             style={{ backgroundColor: status === 'psy_online' ? '#36cf3e' : '#2b8c01' }} />
@@ -41,7 +41,7 @@ const ProfilMenu = () => {
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
                         style={{ border: status==='psy_busy' ? '2px orange solid' : 'none' }}
-                        onClick={()=>{changeStatus('psy_busy')}}>
+                        onClick={()=>{putStatus('psy_busy')}}>
                         <div
                             className='voyant mx-2'
                             style={{ backgroundColor: status === 'psy_busy' ? 'orange' : '#ad8500' }} />
@@ -52,7 +52,7 @@ const ProfilMenu = () => {
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
                         style={{ border: status==='psy_offline' ? '2px red solid' : 'none' }}
-                        onClick={()=>{changeStatus('psy_offline')}}>
+                        onClick={()=>{putStatus('psy_offline')}}>
                         <div
                             className='voyant mx-2'
                             style={{ backgroundColor: status === 'psy_offline' ? 'red' : '#9e0000' }} />

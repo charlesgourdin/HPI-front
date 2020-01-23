@@ -24,7 +24,7 @@ class PsychologueProvider extends Component {
             ticketActiv: -1,
             setToken: this.setToken,
             changeMenu: this.changeMenu,
-            changeStatus: this.changeStatus,
+            putStatus: this.putStatus,
             getTicket: this.getTicket,
             openChat: this.openChat,
             openChannel: this.openChannel,
@@ -47,6 +47,7 @@ class PsychologueProvider extends Component {
 
     putStatus = (status) => {
         //Mise à jour du status du psy
+        this.setState({status: status})
         axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
@@ -55,11 +56,6 @@ class PsychologueProvider extends Component {
 
     changeMenu = (page) => {
         this.setState({ menuActiv: page })
-    }
-
-    changeStatus = (status) => {
-        this.setState({ status: status })
-        this.putStatus(status)
     }
 
     openChat = (i, channel) => {

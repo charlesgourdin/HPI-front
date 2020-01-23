@@ -1,9 +1,6 @@
-import React, { useContext } from 'react';
-import { PsychologueContext } from '../../providers/PsychologueContext'
+import React from 'react';
 
 const PsychoMenu = () => {
-
-    const { } = useContext(PsychologueContext)
 
 
     return (
