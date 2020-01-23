@@ -41,9 +41,9 @@ class PsychologueProvider extends Component {
         this.token = data.token
         this.userId = data.userId
         //Mise à jour du status du psychologue à la connexion (psy_online)
-        axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, {role: 'psy_online'}, { headers: { "Authorization": `Bearer ${this.token}` }})
+        axios.put(`${this.props.endpoint}/users/auth/admin/${data.userId}`, {role: 'psy_online'}, { headers: { "Authorization": `Bearer ${this.token}` }})
             .then(res => {
-                console.log(res)
+                // console.log(res)
             })
         
     }
@@ -56,7 +56,7 @@ class PsychologueProvider extends Component {
         this.setState({ status: status })
         axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, {role: status}, { headers: { "Authorization": `Bearer ${this.token}` }})
             .then(res => {
-                console.log(res)
+                // console.log(res)
             })
     }
 
