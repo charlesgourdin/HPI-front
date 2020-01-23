@@ -91,6 +91,35 @@ h2, p {
   outline: 0;
 }
 
+.menu_button{
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 0px;
+  margin: 16px;
+  color: #236fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.menu_button:hover{
+  background-color: rgb(236, 237, 243);
+  color: #034acf;
+}
+
+.menu_button:active{
+  transform: scale(0.95) ;
+  transition-duration: 0.4s;
+}
+
+.menu_button:focus{
+  outline: 0;
+}
+
 .status_button{
   background-color: white;
   width: 128px;

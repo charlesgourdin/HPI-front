@@ -13,10 +13,10 @@ const MenuPsy = () => {
                 backgroundColor: '#236fff'
             }}>
             <img src={hpiLogo} alt='logo_hpi' style={{ width: '50%', margin: '8px' }} />
-            <div>
-                <button onClick={() => changeMenu('profil')}>Profil</button>
-                <button onClick={() => changeMenu('psychologues')}>Psychologues</button>
-                <button onClick={() => changeMenu('tickets')}>Tickets</button>
+            <div className='mt-5'>
+                <button className='menu_button' onClick={() => changeMenu('profil')}>1</button>
+                <button className='menu_button' onClick={() => changeMenu('psychologues')}>2</button>
+                <button className='menu_button' onClick={() => changeMenu('tickets')}>3</button>
             </div>
 
         </div>
