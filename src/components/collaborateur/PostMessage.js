@@ -13,7 +13,7 @@ const PostMessage = () => {
             height: '25%',
             // border:'1px black solid'
         }}>
-                <form className='w-100 h-100 d-flex flex-column justify-content-around align-items-end'> 
+                <form className='w-100 h-100 d-flex flex-column justify-content-around align-items-end' autoComplete='off'> 
                     <input
                         className='rounded-lg w-100'
                         style={{
