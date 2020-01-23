@@ -8,12 +8,13 @@ class PsychologueProvider extends Component {
         super(props)
         this.channel = '';
         this.clientId = '';
+        this.userId = localStorage.getItem('userId') || null;
         this.token = localStorage.getItem("token") || null;
         this.state = {
             endpoint: this.props.endpoint,
             socket: socketIOClient(`${this.props.endpoint}`),
             user: localStorage.getItem("username") || 'anonyme',
-            status: 'dispo',
+            status: 'psy_online',
             isLogged: false,
             discussion: [],
             tickets: [],
@@ -38,6 +39,13 @@ class PsychologueProvider extends Component {
     setToken = (data) => {
         this.setState({ user: data.username })
         this.token = data.token
+        this.userId = data.userId
+        //Mise à jour du status du psychologue à la connexion (psy_online)
+        axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, {role: 'psy_online'}, { headers: { "Authorization": `Bearer ${this.token}` }})
+            .then(res => {
+                console.log(res)
+            })
+        
     }
 
     changeMenu = (page) => {
@@ -46,6 +54,10 @@ class PsychologueProvider extends Component {
 
     changeStatus = (status) => {
         this.setState({ status: status })
+        axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, {role: status}, { headers: { "Authorization": `Bearer ${this.token}` }})
+            .then(res => {
+                console.log(res)
+            })
     }
 
     openChat = (i, channel) => {

@@ -29,36 +29,36 @@ const ProfilMenu = () => {
                 <div className='d-flex w-75 mt-3 flex-column align-items-center justify-content-around'>
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
-                        style={{ border: status==='dispo' ? '2px #36cf3e solid' : 'none' }}
-                        onClick={()=>{changeStatus('dispo')}}>
+                        style={{ border: status==='psy_online' ? '2px #36cf3e solid' : 'none' }}
+                        onClick={()=>{changeStatus('psy_online')}}>
                         <div
                             className='voyant mx-2'
-                            style={{ backgroundColor: status === 'dispo' ? '#36cf3e' : '#2b8c01' }} />
+                            style={{ backgroundColor: status === 'psy_online' ? '#36cf3e' : '#2b8c01' }} />
                         <p
                             className='m-0'
-                            style={{ textAlign: 'center', width: '70%', color: status === 'dispo' ? '#36cf3e' : '#2b8c01' }}>Disponible</p>
+                            style={{ textAlign: 'center', width: '70%', color: status === 'psy_online' ? '#36cf3e' : '#2b8c01' }}>Disponible</p>
                     </button>
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
-                        style={{ border: status==='occup' ? '2px orange solid' : 'none' }}
-                        onClick={()=>{changeStatus('occup')}}>
+                        style={{ border: status==='psy_busy' ? '2px orange solid' : 'none' }}
+                        onClick={()=>{changeStatus('psy_busy')}}>
                         <div
                             className='voyant mx-2'
-                            style={{ backgroundColor: status === 'occup' ? 'orange' : '#ad8500' }} />
+                            style={{ backgroundColor: status === 'psy_busy' ? 'orange' : '#ad8500' }} />
                         <p
                             className='m-0'
-                            style={{ textAlign: 'center', width: '60%', color: status === 'occup' ? 'orange' : '#ad8500' }}>Occupé</p>
+                            style={{ textAlign: 'center', width: '60%', color: status === 'psy_busy' ? 'orange' : '#ad8500' }}>Occupé</p>
                     </button>
                     <button
                         className='status_button m-2 z-depth-1 d-flex align-items-center justify-content-start'
-                        style={{ border: status==='absent' ? '2px red solid' : 'none' }}
-                        onClick={()=>{changeStatus('absent')}}>
+                        style={{ border: status==='psy_offline' ? '2px red solid' : 'none' }}
+                        onClick={()=>{changeStatus('psy_offline')}}>
                         <div
                             className='voyant mx-2'
-                            style={{ backgroundColor: status === 'absent' ? 'red' : '#9e0000' }} />
+                            style={{ backgroundColor: status === 'psy_offline' ? 'red' : '#9e0000' }} />
                         <p
                             className='m-0'
-                            style={{ textAlign: 'center', width: '60%', color: status === 'absent' ? 'red' : '#9e0000' }}>Absent</p>
+                            style={{ textAlign: 'center', width: '60%', color: status === 'psy_offline' ? 'red' : '#9e0000' }}>Absent</p>
                     </button>
                 </div>
             </div>

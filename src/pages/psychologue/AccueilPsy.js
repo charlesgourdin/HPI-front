@@ -24,6 +24,7 @@ const AccueilPsy = () => {
                     setToken(res.data)
                     localStorage.setItem('token', res.data.token)
                     localStorage.setItem('username', res.data.username)
+                    localStorage.setItem('userId', res.data.userId)
                 }
             })
             .then(() => {
