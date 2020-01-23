@@ -9,7 +9,7 @@ import { MDBCol } from 'mdbreact';
 
 const FormEndCall = () => {
 
-  const { sendForm, closeTicket } = useContext(PsychologueContext)
+  const { sendForm } = useContext(PsychologueContext)
 
   return (
     <div className="d-md-flex py-4 h-100 rounded z-depth-1" >

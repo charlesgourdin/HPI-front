@@ -5,13 +5,15 @@ import {
     MDBRow
 } from 'mdbreact';
 import ChatBoxPsy from '../../components/Psychologue/ChatBoxPsy';
-import TicketFill from '../../components/Psychologue/TicketFill';
+import TicketMenu from '../../components/Psychologue/TicketMenu';
 import MenuPsy from '../../components/Psychologue/MenuPsy';
 import FormEndCall from './FormEndCall';
+import PsychoMenu from '../../components/Psychologue/PsychoMenu';
+import ProfilMenu from '../../components/Psychologue/ProfilMenu';
 
 const Psychologue = () => {
 
-    const { chatActiv, formActiv, getTicket } = useContext(PsychologueContext)
+    const { chatActiv, formActiv, getTicket, menuActiv } = useContext(PsychologueContext)
 
     useEffect(() => {
         getTicket()
@@ -26,7 +28,9 @@ const Psychologue = () => {
                             <MenuPsy />
                         </MDBCol>
                         <MDBCol className='m-0 p-0 h-100' size='8' md='8' lg='9' xl='10'>
-                            <TicketFill />
+                            {menuActiv==='profil' && <ProfilMenu />}
+                            {menuActiv==='psychologues' && <PsychoMenu />}
+                            {menuActiv==='tickets' && <TicketMenu />}
                         </MDBCol>
                     </MDBRow>
                 </MDBCol>

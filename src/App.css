@@ -91,6 +91,42 @@ h2, p {
   outline: 0;
 }
 
+.status_button{
+  background-color: white;
+  width: 128px;
+  height: 40px;
+  border-radius: 20px;
+  border: 0px;
+  margin: 16px;
+  color: #236fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+.status_button:hover{
+  background-color: rgb(236, 237, 243);
+  color: #034acf;
+}
+
+.status_button:active{
+  transform: scale(0.95) ;
+  transition-duration: 0.4s;
+}
+
+.status_button:focus{
+  outline: 0;
+}
+
+.voyant {
+  /* border: 1px rgb(226, 226, 226) solid; */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
 .ticket{
   width: 90%;
   height: 200px;

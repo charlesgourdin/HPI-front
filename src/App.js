@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     CheckToken().then(val => setCheckTokenValue(val))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const CheckToken = async () => {

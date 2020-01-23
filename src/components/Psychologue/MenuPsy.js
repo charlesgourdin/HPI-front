@@ -1,7 +1,10 @@
-import React from 'react'
-import hpiLogo from '../../assets/hpiLogo.png'
+import React, { useContext } from 'react';
+import { PsychologueContext } from '../../providers/PsychologueContext';
+import hpiLogo from '../../assets/hpiLogo.png';
 
 const MenuPsy = () => {
+
+    const { changeMenu } = useContext(PsychologueContext)
 
     return (
         <div
@@ -9,7 +12,12 @@ const MenuPsy = () => {
             style={{
                 backgroundColor: '#236fff'
             }}>
-            <img src={hpiLogo} alt='logo_hpi' style={{ width: '50%', margin:'8px'}} />
+            <img src={hpiLogo} alt='logo_hpi' style={{ width: '50%', margin: '8px' }} />
+            <div>
+                <button onClick={() => changeMenu('profil')}>Profil</button>
+                <button onClick={() => changeMenu('psychologues')}>Psychologues</button>
+                <button onClick={() => changeMenu('tickets')}>Tickets</button>
+            </div>
 
         </div>
     )

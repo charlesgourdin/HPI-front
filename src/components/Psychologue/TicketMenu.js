@@ -2,35 +2,7 @@ import React, { useContext } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext'
 import Moment from 'react-moment'
 
-// const ticketModel = [
-//     {
-//         id: 1,
-//         username: 'Eric',
-//         connexion: '2019-01-01 08:00:00'
-//     },
-//     {
-//         id: 2,
-//         username: 'Tom',
-//         connexion: '2019-01-01 08:00:00'
-//     },
-//     {
-//         id: 3,
-//         username: 'Max',
-//         connexion: '2019-01-01 08:00:00'
-//     },
-//     {
-//         id: 4,
-//         username: 'Jules',
-//         connexion: '2019-01-01 08:00:00'
-//     },
-//     {
-//         id: 5,
-//         username: 'Anne',
-//         connexion: '2019-01-01 08:00:00'
-//     },
-// ]
-
-const TicketFill = () => {
+const TicketMenu = () => {
 
     const { openChat, ticketActiv, tickets } = useContext(PsychologueContext)
 
@@ -117,4 +89,4 @@ const TicketFill = () => {
     )
 }
 
-export default TicketFill
+export default TicketMenu
