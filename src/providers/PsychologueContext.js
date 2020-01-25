@@ -47,7 +47,7 @@ class PsychologueProvider extends Component {
     putStatus = (status) => {
         //Mise à jour du status du psy
         this.setState({ status: status })
-        axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/api/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -84,7 +84,7 @@ class PsychologueProvider extends Component {
     }
 
     getTicket = () => {
-        axios.get(`${this.props.endpoint}/tickets/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.get(`${this.props.endpoint}/api/tickets/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 const tickets = res.data;
                 this.setState({ tickets });
