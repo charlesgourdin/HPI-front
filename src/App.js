@@ -30,7 +30,7 @@ function App() {
 
   const CheckToken = async () => {
     try {
-      const { data } = await axios.get(`${endpoint}/tickets?token=${token}`)
+      const { data } = await axios.get(`${endpoint}/api/tickets?token=${token}`)
       return (data.id.toString() === id.toString())
     } catch (error) {
       // console.log("Erreur:", error)

@@ -24,7 +24,7 @@ class CollaborateurProvider extends Component {
 
     startCollab = (name) => {
         this.setState({ user: name, discussion: [] }, () => {
-            axios.post(`${this.props.endpoint}/tickets/`, {
+            axios.post(`${this.props.endpoint}/api/tickets/`, {
                 id: this.state.userId,
                 token: this.state.userToken,
                 pseudo: this.state.user
