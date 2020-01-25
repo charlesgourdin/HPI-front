@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios'
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { HashRouter as BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { MDBBtn } from 'mdbreact';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,10 +40,10 @@ function App() {
   const Authorized = () => {
     if (checkTokenValue === true)
       return (
-        <div>
+        <>
           <Route exact path='/' component={Accueil} />
           <Route exact path='/collab' component={Collaborateur} />
-        </div>
+        </>
       );
   }
 
@@ -77,19 +77,15 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <div>
-          <PsychologueProvider endpoint={endpoint} socket={socket}>
-          <CollaborateurProvider endpoint={endpoint} socket={socket} userInfos={{id, token}} >
-          <Switch>
-            <div>
-              <Route path='/admin' component={AccueilPsy} />
-              <PrivateRoute path='/psy' component={Psychologue} />
-              {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
-            </div>
-          </Switch>
-          </CollaborateurProvider>
-          </PsychologueProvider>
-        </div>
+        <PsychologueProvider endpoint={endpoint} socket={socket}>
+        <CollaborateurProvider endpoint={endpoint} socket={socket} userInfos={{id, token}} >
+        <Switch>
+          <Route path='/admin' component={AccueilPsy} />
+          <PrivateRoute path='/psy' component={Psychologue} />
+          {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
+        </Switch>
+        </CollaborateurProvider>
+        </PsychologueProvider>
       </BrowserRouter>
     </div>
   );
