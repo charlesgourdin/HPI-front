@@ -40,10 +40,10 @@ function App() {
   const Authorized = () => {
     if (checkTokenValue === true)
       return (
-        <>
+        <div>
           <Route exact path='/' component={Accueil} />
           <Route exact path='/collab' component={Collaborateur} />
-        </>
+        </div>
       );
   }
 
@@ -77,15 +77,19 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <PsychologueProvider endpoint={endpoint} socket={socket}>
-        <CollaborateurProvider endpoint={endpoint} socket={socket} userInfos={{id, token}} >
-        <Switch>
-          <Route exact path='/admin' component={AccueilPsy} />
-          <PrivateRoute path='/psy' component={Psychologue} />
-          {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
-        </Switch>
-        </CollaborateurProvider>
-        </PsychologueProvider>
+        <div>
+          <PsychologueProvider endpoint={endpoint} socket={socket}>
+          <CollaborateurProvider endpoint={endpoint} socket={socket} userInfos={{id, token}} >
+          <Switch>
+            <div>
+              <Route path='/admin' component={AccueilPsy} />
+              <PrivateRoute path='/psy' component={Psychologue} />
+              {(checkTokenValue === true) ? <Authorized /> : <Unauthorized />}
+            </div>
+          </Switch>
+          </CollaborateurProvider>
+          </PsychologueProvider>
+        </div>
       </BrowserRouter>
     </div>
   );
