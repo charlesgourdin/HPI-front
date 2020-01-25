@@ -42,7 +42,7 @@ function App() {
       return (
         <>
           <Route exact path='/' component={Accueil} />
-          <Route exact path='/collab' component={Collaborateur} />
+          <Route path='/collab' component={Collaborateur} />
         </>
       );
   }
