@@ -102,6 +102,7 @@ class PsychologueProvider extends Component {
     }
 
     sendMessage = (message) => {
+
         if (message.length > 0) {
             this.socket.emit('message', {
                 message: message,

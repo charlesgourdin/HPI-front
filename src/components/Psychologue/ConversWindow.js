@@ -24,7 +24,7 @@ const ConversWindow = () => {
                     >{item.user}</p>
                     <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                         <p className="apiMessage">{item.message}</p>
-                        <Moment format="DD/MM/YYYY - HH:mm" style={{float:'right', fontSize:'12px'}}>{discussion.timestamp}</Moment>
+                        <Moment format="DD/MM/YYYY - HH:mm" style={{float:'right', fontSize:'12px'}}>{item.timestamp}</Moment>
                     </div>
                 </div>)
             })}
