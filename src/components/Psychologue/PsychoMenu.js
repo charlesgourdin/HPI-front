@@ -23,17 +23,17 @@ const PsychoMenu = () => {
                     height: 'auto',
                     overflowY: 'scroll'
                 }}>
-                    {
-                        psychologues.map((item, i) => {
-                            return(
-                                <>
+                {
+                    psychologues.map((item, i) => {
+                        return (
+                            <div key={'psy' + i}>
                                 <p>{item.firstname} {item.lastname}</p>
                                 <p>{item.role}</p>
-                                <hr/>
-                                </>
-                            )
-                        })
-                    }
+                                <hr />
+                            </div>
+                        )
+                    })
+                }
 
             </div>
         </div>

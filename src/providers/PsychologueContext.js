@@ -125,6 +125,14 @@ class PsychologueProvider extends Component {
                 this.clientId = object
             }
         })
+
+        this.socket.on('psychologues', object => {
+            this.getPsy()
+        })
+
+        this.socket.on('tickets', object => {
+            this.getTicket()
+        })
     }
 
     render() {
