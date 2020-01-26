@@ -12,8 +12,8 @@ const FormEndCall = () => {
   const { sendForm } = useContext(PsychologueContext)
 
   return (
-    <div className="d-flex h-100 w-100 p-3 rounded z-depth-1" >
-      <div className='w-100 d-flex px-3' style={{ overflowY: "auto" }}>
+    <div className="d-md-flex h-100 w-100 p-3 rounded z-depth-1" >
+      <div className='w-100 d-md-flex px-3' style={{ overflowY: "auto" }}>
         <MDBCol md='6' tag='section'>
           <FormPsy />
           <FormCollab />

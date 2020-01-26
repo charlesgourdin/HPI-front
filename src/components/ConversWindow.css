@@ -16,6 +16,8 @@
 
 .apiMessage{
     font-size: 16px;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 .apiUsername{

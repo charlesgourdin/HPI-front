@@ -1,9 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext'
-import {
-    MDBCol,
-    MDBRow
-} from 'mdbreact';
 import ChatBoxPsy from '../../components/Psychologue/ChatBoxPsy';
 import TicketMenu from '../../components/Psychologue/TicketMenu';
 import MenuPsy from '../../components/Psychologue/MenuPsy';
@@ -31,9 +27,9 @@ const Psychologue = () => {
                 {menuActiv === 'psychologues' && <PsychoMenu />}
                 {menuActiv === 'tickets' && <TicketMenu />}
             </div>
-            <div className='h-100 w-100 p-3'>
+            <div className='h-100 w-75 p-3'>
                 {chatActiv && <ChatBoxPsy />}
-                {true && <FormEndCall />}
+                {formActiv && <FormEndCall />}
             </div>
         </div>
     )

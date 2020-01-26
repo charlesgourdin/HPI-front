@@ -16,12 +16,12 @@ const ConversWindow = () => {
             {console.log(discussion)}
             {discussion.map((item, i) => {
                 return (<div className="w-75 d-flex flex-column m-2" key={i}
-                    style={{ float: user === item.user ? "right" : "left" }}
+                    style={{ float: user === item.user ? "right" : "left" , overflowWrap: 'break-word'}}
                 >
                     <p className="apiUsername"
                         style={{ alignSelf: user === item.user ? "flex-end" : "flex-start" }}
                     >{item.user}</p>
-                    <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
+                    <div className={user === item.user ? "messageBlocA" : "messageBlocB"} style={{overflowWrap: 'break-word'}}>
                         <p className="apiMessage">{item.message}</p>
                         <Moment format="DD/MM/YYYY - HH:mm" style={{float:'right', fontSize:'12px'}}>{discussion.timestamp}</Moment>
                     </div>
