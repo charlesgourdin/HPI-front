@@ -33,7 +33,7 @@ const Psychologue = () => {
             </div>
             <div className='h-100 w-100 p-3'>
                 {chatActiv && <ChatBoxPsy />}
-                {formActiv && <FormEndCall />}
+                {true && <FormEndCall />}
             </div>
         </div>
     )

@@ -40,7 +40,7 @@ const TicketMenu = () => {
             <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
                 style={{
                     height: 'auto',
-                    overflowY: 'scroll'
+                    overflowY: 'auto'
 
                 }}>
                 {
