@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PsychologueContext } from '../../providers/PsychologueContext'
 
 const PsychoMenu = () => {
 
+    const { psychologues } = useContext(PsychologueContext)
 
     return (
         <div className='h-100 z-depth-2 d-flex flex-column justify-content-between p-0' style={{
@@ -21,7 +23,18 @@ const PsychoMenu = () => {
                     height: 'auto',
                     overflowY: 'scroll'
                 }}>
-                
+                    {
+                        psychologues.map((item, i) => {
+                            return(
+                                <>
+                                <p>{item.firstname} {item.lastname}</p>
+                                <p>{item.role}</p>
+                                <hr/>
+                                </>
+                            )
+                        })
+                    }
+
             </div>
         </div>
     )

@@ -13,24 +13,26 @@ import ProfilMenu from '../../components/Psychologue/ProfilMenu';
 
 const Psychologue = () => {
 
-    const { chatActiv, formActiv, getTicket, menuActiv } = useContext(PsychologueContext)
+    const { chatActiv, formActiv, getTicket, getPsy, menuActiv } = useContext(PsychologueContext)
 
     useEffect(() => {
         getTicket()
-    }, [getTicket])
+        getPsy()
+
+    }, [getTicket, getPsy])
 
     return (
         <div className='d-flex h-100 justify-content-center' style={{}}>
             <MDBRow className='w-100 h-100'>
                 <MDBCol className='h-100' size='6' md='5' xl='4'>
-                    <MDBRow className='w-100 h-100'>
-                        <MDBCol className='m-0 p-0 h-100' style={{maxWidth: '100px'}}size='4' md='4' lg='3' xl='3'>
+                    <MDBRow className='w-100 h-100 '>
+                        <MDBCol className='m-0 p-0 h-100' style={{ maxWidth: '100px' }} size='4' md='4' lg='3' xl='3'>
                             <MenuPsy />
                         </MDBCol>
                         <MDBCol className='m-0 p-0 h-100' size='8' md='8' lg='9' xl='9'>
-                            {menuActiv==='profil' && <ProfilMenu />}
-                            {menuActiv==='psychologues' && <PsychoMenu />}
-                            {menuActiv==='tickets' && <TicketMenu />}
+                            {menuActiv === 'profil' && <ProfilMenu />}
+                            {menuActiv === 'psychologues' && <PsychoMenu />}
+                            {menuActiv === 'tickets' && <TicketMenu />}
                         </MDBCol>
                     </MDBRow>
                 </MDBCol>

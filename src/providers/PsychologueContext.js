@@ -17,6 +17,7 @@ class PsychologueProvider extends Component {
             isLogged: false,
             discussion: [],
             tickets: [],
+            psychologues: [],
             menuActiv: 'profil',
             chatActiv: false,
             formActiv: false,
@@ -24,6 +25,7 @@ class PsychologueProvider extends Component {
             changeMenu: this.changeMenu,
             putStatus: this.putStatus,
             getTicket: this.getTicket,
+            getPsy: this.getPsy,
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
@@ -88,6 +90,14 @@ class PsychologueProvider extends Component {
             .then(res => {
                 const tickets = res.data;
                 this.setState({ tickets });
+            })
+    }
+
+    getPsy = () => {
+        axios.get(`${this.props.endpoint}/users/psy/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                const psychologues = res.data;
+                this.setState({ psychologues });
             })
     }
 
