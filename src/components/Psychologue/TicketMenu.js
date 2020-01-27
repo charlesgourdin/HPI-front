@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext'
 import Moment from 'react-moment'
 
 const TicketMenu = () => {
 
-    const { openChat, ticketActiv, tickets } = useContext(PsychologueContext)
+    const { openChat, ticketActiv, tickets, userId } = useContext(PsychologueContext)
+
+    const [ticketFilter, selectTicketFilter] = useState('open')
 
     const displayTcketStyle = (i, ticketActiv) => {
         if (ticketActiv === i) {
@@ -25,9 +27,10 @@ const TicketMenu = () => {
 
 
     return (
-        <div className='h-100 z-depth-2 d-flex flex-column justify-content-between p-0' style={{
+        <div className='h-100 z-depth-2 d-flex flex-column p-0' style={{
             backgroundColor: 'white',
-            padding: '10px'
+            padding: '10px',
+            margin: '0'
         }}>
             <h2 style={{
                 textAlign: 'center',
@@ -35,8 +38,28 @@ const TicketMenu = () => {
                 marginTop: '10px',
             }}>
                 Tickets
-                <hr />
+                {/* <hr /> */}
             </h2>
+            <div>
+                <button className='onglet'
+                    onClick={() => selectTicketFilter('open')}
+                    style={{
+                        color: ticketFilter === 'open' ? 'black' : '#cfcfcf',
+                        borderBottom: ticketFilter === 'open' ? 'none' : '1px #e3e3e3 solid',
+                        borderRight: ticketFilter === 'open' ? 'none' : '1px #e3e3e3 solid',
+                        borderRadius: ticketFilter === 'open' ? '0 12px 0 0' : '0 12px 12px 0'
+                    }}
+                >En attente de psychologue</button>
+                <button className='onglet'
+                    onClick={() => selectTicketFilter('pending')}
+                    style={{
+                        color: ticketFilter === 'pending' ? 'black' : '#cfcfcf',
+                        borderBottom: ticketFilter === 'pending' ? 'none' : '1px #e3e3e3 solid',
+                        borderLeft: ticketFilter === 'pending' ? 'none' : '1px #e3e3e3 solid',
+                        borderRadius: ticketFilter === 'pending' ? '12px 0 0 0' : '12px 0 0 12px'
+                    }}
+                >Discussions en cours</button>
+            </div>
             <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
                 style={{
                     height: 'auto',
@@ -45,7 +68,17 @@ const TicketMenu = () => {
                 }}>
                 {
                     tickets
-                        .filter((ticket) => ticket.state === 'open')
+                        .filter((ticket) => {
+                            if (ticketFilter === 'open') {
+                                return ticket.state === 'open'
+                            }
+                            else if (ticketFilter === 'pending') {
+                                return ticket.state === 'pending' && ticket.psy_id === parseInt(userId)
+                            } else {
+                                return null
+                            }
+                        }
+                        )
                         .map((ticket, i) => {
                             return (
                                 <div

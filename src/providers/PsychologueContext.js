@@ -7,18 +7,18 @@ class PsychologueProvider extends Component {
         super(props)
         this.channel = '';
         this.clientId = '';
-        this.userId = localStorage.getItem('userId') || null;
         this.token = localStorage.getItem("token") || null;
         this.socket = this.props.socket;
         this.state = {
             endpoint: this.props.endpoint,
             user: localStorage.getItem("username") || 'anonyme',
+            userId: localStorage.getItem('userId') || null,
             status: 'psy_online',
             isLogged: false,
             discussion: [],
             tickets: [],
             psychologues: [],
-            menuActiv: 'profil',
+            menuActiv: 'tickets',
             chatActiv: false,
             formActiv: false,
             ticketActiv: -1,
@@ -38,9 +38,8 @@ class PsychologueProvider extends Component {
     }
 
     setToken = (data) => {
-        this.setState({ user: data.username })
+        this.setState({ user: data.username, userId: data.id })
         this.token = data.token
-        this.userId = data.id
         //Mise à jour du status du psychologue à la connexion (psy_online)
         this.putStatus('psy_online')
 
@@ -49,7 +48,7 @@ class PsychologueProvider extends Component {
     putStatus = (status) => {
         //Mise à jour du status du psy
         this.setState({ status: status })
-        axios.put(`${this.props.endpoint}/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/users/auth/admin/${this.state.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -109,7 +108,7 @@ class PsychologueProvider extends Component {
                 user: this.state.user,
                 channel: this.channel,
                 timestamp: Date.now(),
-                sender_id: this.userId,
+                sender_id: this.state.userId,
                 tickets_id: this.state.ticketId
             })
         }

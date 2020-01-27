@@ -95,13 +95,13 @@ h2, p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #236fff;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   border: 0px;
   margin: 16px;
-  color: #236fff;
+  color: white;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: bold;
   font-size: 14px;
@@ -112,7 +112,7 @@ h2, p {
 
 .menu_button:hover{
   background-color: rgb(236, 237, 243);
-  color: #034acf;
+  color: #236fff;
 }
 
 .menu_button:active{
@@ -121,6 +121,26 @@ h2, p {
 }
 
 .menu_button:focus{
+  outline: 0;
+}
+
+.onglet {
+  width: 50%;
+  height: 40px;
+  background-color: white;
+  margin-top: 8px;
+  font-size: calc(8px + (14 - 8) * ((100vw - 300px) / (1600 - 300)));
+  font-family: 'Source Sans Pro', sans-serif;
+  border: 0;
+  border-color: yellow;
+  border-top: 1px #e3e3e3 solid;
+}
+
+.onglet:hover{
+  background-color: rgb(251, 251, 251);
+}
+
+.onglet:focus{
   outline: 0;
 }
 
