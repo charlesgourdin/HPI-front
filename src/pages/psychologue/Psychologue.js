@@ -19,15 +19,15 @@ const Psychologue = () => {
 
     return (
         <div className='d-flex h-100 w-100 justify-content-center' style={{}}>
-            <div className='m-0 p-0 h-100' style={{ width: '100px' }}>
+            <div className='m-0 p-0 h-100' style={{ width: '90px' }}>
                 <MenuPsy />
             </div>
-            <div className='m-0 p-0 h-100' style={{ width: '600px'}}>
+            <div className='m-0 p-0 h-100' style={{ width: '430px'}}>
                 {menuActiv === 'profil' && <ProfilMenu />}
                 {menuActiv === 'psychologues' && <PsychoMenu />}
                 {menuActiv === 'tickets' && <TicketMenu />}
             </div>
-            <div className='h-100 w-75 p-3'>
+            <div className='h-100 p-3 psyWindow'>
                 {chatActiv && <ChatBoxPsy />}
                 {formActiv && <FormEndCall />}
             </div>

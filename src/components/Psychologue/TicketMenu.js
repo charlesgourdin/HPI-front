@@ -51,7 +51,8 @@ const TicketMenu = () => {
                         color: ticketFilter === 'open' ? 'black' : '#cfcfcf',
                         borderBottom: ticketFilter === 'open' ? 'none' : '1px #e3e3e3 solid',
                         borderRight: ticketFilter === 'open' ? 'none' : '1px #e3e3e3 solid',
-                        borderRadius: ticketFilter === 'open' ? '0 12px 0 0' : '0 12px 12px 0'
+                        borderRadius: ticketFilter === 'open' ? '0 12px 0 0' : '0 12px 12px 0',
+                        boxShadow: ticketFilter === 'open' ? 'none' : 'inset -5px -12px 31px -32px rgba(0,0,0,0.30)'
                     }}
                 >En attente de psychologue</button>
                 <button className='onglet'
@@ -60,7 +61,8 @@ const TicketMenu = () => {
                         color: ticketFilter === 'pending' ? 'black' : '#cfcfcf',
                         borderBottom: ticketFilter === 'pending' ? 'none' : '1px #e3e3e3 solid',
                         borderLeft: ticketFilter === 'pending' ? 'none' : '1px #e3e3e3 solid',
-                        borderRadius: ticketFilter === 'pending' ? '12px 0 0 0' : '12px 0 0 12px'
+                        borderRadius: ticketFilter === 'pending' ? '12px 0 0 0' : '12px 0 0 12px',
+                        boxShadow: ticketFilter === 'pending' ? 'none' : 'inset 5px -12px 31px -32px rgba(0,0,0,0.30)'
                     }}
                 >Discussions en cours</button>
             </div>

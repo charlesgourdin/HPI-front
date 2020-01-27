@@ -6,6 +6,10 @@ h2, p {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+.psyWindow{
+  width: calc(100vw - 520px);
+}
+
 .primary_button{
   background-color: #236fff;
   width: 128px;
@@ -129,7 +133,8 @@ h2, p {
   height: 40px;
   background-color: white;
   margin-top: 8px;
-  font-size: calc(8px + (14 - 8) * ((100vw - 300px) / (1600 - 300)));
+  /* font-size: calc(8px + (14 - 8) * ((100vw - 300px) / (1600 - 300))); */
+  font-size: 12px;
   font-family: 'Source Sans Pro', sans-serif;
   border: 0;
   border-color: yellow;
