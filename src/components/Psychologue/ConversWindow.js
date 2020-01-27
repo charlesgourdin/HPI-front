@@ -15,10 +15,9 @@ const ConversWindow = () => {
             }}
         >
             {discussion.map((item, i) => {
-            // setTimeout(() => {
-            //     document.getElementById("to_autoscroll").scrollBy(0, 10000)
-                
-            // }, 250);
+                setTimeout(() => {
+                    document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                }, 250);
                 return (<div className="w-75 d-flex flex-column m-2" key={i}
                     style={{ float: user === item.user ? "right" : "left" }}
                 >
