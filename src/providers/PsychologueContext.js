@@ -30,6 +30,7 @@ class PsychologueProvider extends Component {
             openChannel: this.openChannel,
             closeChat: this.closeChat,
             closeTicket: this.closeTicket,
+            goToForm: this.goToForm,
             sendForm: this.sendForm,
             sendMessage: this.sendMessage,
             setToken: this.setToken,
@@ -79,6 +80,17 @@ class PsychologueProvider extends Component {
     }
 
     closeTicket = () => {
+        this.socket.emit('message', {
+            message: 'Demande de fermeture du ticket envoyée',
+            user: 'demandeCloture',
+            channel: this.channel,
+            timestamp: Date.now(),
+            sender_id: this.state.userId,
+            tickets_id: this.state.ticketId
+        })
+    }
+
+    goToForm = () => {
         this.setState({ chatActiv: !this.state.chatActiv, formActiv: !this.state.formActiv })
     }
 
