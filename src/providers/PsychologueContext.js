@@ -69,7 +69,7 @@ class PsychologueProvider extends Component {
 
     openChannel = () => {
         this.socket.emit('waiting room', this.channel)
-        this.putStatus('psy_busy')
+        this.putStatus('psy_busy');
     }
 
     collectMessages = (channel) => {
@@ -111,7 +111,8 @@ class PsychologueProvider extends Component {
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.userId,
-                tickets_id: this.state.ticketId
+                tickets_id: this.state.ticketId,
+                role: 'psy_on'
             })
         }
     }
@@ -120,7 +121,6 @@ class PsychologueProvider extends Component {
         this.socket.on('waiting room', object => {
             if (typeof (object) === 'object') {
                 this.setState({ discussion: [...this.state.discussion, object] })
-                console.log(this.state.chatActiv)
                 if (this.state.chatActiv) document.getElementById("to_autoscroll").scrollBy(0, 10000)
             }
             else {
