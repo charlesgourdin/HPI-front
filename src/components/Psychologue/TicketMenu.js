@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { PsychologueContext } from '../../providers/PsychologueContext'
 import Moment from 'react-moment'
 
 const TicketMenu = () => {
 
-    const { openChat, ticketActiv, tickets, userId } = useContext(PsychologueContext)
+    const { openChat, ticketActiv, tickets, userId, status } = useContext(PsychologueContext)
 
     const [ticketFilter, selectTicketFilter] = useState('open')
 
-    const displayTcketStyle = (i, ticketActiv) => {
-        if (ticketActiv === i) {
+    const displayTicketStyle = (ticketId, ticketActiv) => {
+        if (ticketActiv === ticketId) {
             return 'ticketActiv'
-        } else if ((ticketActiv !== -1) && (i !== ticketActiv)) {
+        } else if ((ticketActiv !== -1) && (ticketId !== ticketActiv)) {
             return 'ticketInactiv'
         } else {
             return 'ticket'
@@ -24,6 +24,10 @@ const TicketMenu = () => {
             .filter(item => item.state === 'closed')
             .length
     }
+
+    useEffect(()=>{
+        status==='psy_busy' && selectTicketFilter('pending')
+    },[status])
 
 
     return (
@@ -60,12 +64,13 @@ const TicketMenu = () => {
                     }}
                 >Discussions en cours</button>
             </div>
-            <div className='d-flex flex-column justify-content-start align-items-center mx-2 mb-2'
+            <div className='d-flex flex-column justify-content-start align-items-center m-2'
                 style={{
-                    height: 'auto',
+                    height: '100%',
                     overflowY: 'auto'
 
                 }}>
+                <hr />
                 {
                     tickets
                         .filter((ticket) => {
@@ -82,8 +87,8 @@ const TicketMenu = () => {
                         .map((ticket, i) => {
                             return (
                                 <div
-                                    className={displayTcketStyle(i, ticketActiv)}
-                                    onClick={(displayTcketStyle(i, ticketActiv) === 'ticket') ? () => openChat(i, ticket.channel, ticket.id) : null}
+                                    className={displayTicketStyle(ticket.id, ticketActiv)}
+                                    onClick={(displayTicketStyle(ticket.id, ticketActiv) === 'ticket') ? () => openChat(ticket.channel, ticket.id) : null}
                                     key={'ticket' + i}
                                 >
                                     <p style={{

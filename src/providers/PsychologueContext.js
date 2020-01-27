@@ -58,14 +58,18 @@ class PsychologueProvider extends Component {
         this.setState({ menuActiv: page })
     }
 
-    openChat = (i, channel, ticketId) => {
-        this.setState({ chatActiv: true, ticketActiv: i, ticketId: ticketId })
+    openChat = (channel, ticketId) => {
+        this.setState({ chatActiv: true, ticketActiv: ticketId, ticketId: ticketId })
         this.channel = channel
     }
 
     openChannel = () => {
         this.socket.emit('waiting room', this.channel)
         this.putStatus('psy_busy')
+        axios.put(`${this.props.endpoint}/tickets/state/${this.state.ticketActiv}`, { state: 'pending', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                // console.log(res)
+            })
     }
 
     closeChat = () => {
