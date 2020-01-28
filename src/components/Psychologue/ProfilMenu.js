@@ -8,7 +8,7 @@ const ProfilMenu = () => {
 
 
     return (
-        <div className='h-100 z-depth-2 d-flex flex-column p-0' style={{
+        <div className='h-100 w-100 z-depth-2 d-flex flex-column p-0' style={{
             backgroundColor: 'white',
             padding: '10px'
         }}>

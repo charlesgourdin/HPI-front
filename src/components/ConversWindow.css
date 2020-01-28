@@ -14,8 +14,18 @@
     border-radius: 0 8px 8px 8px;
 }
 
+.messageBlocC {
+    color: white;
+    background-color: #e2e5e5;
+    padding: 8px ;
+    width: 100%;
+    border-radius: 8px 8px 8px 8px;
+}
+
 .apiMessage{
     font-size: 16px;
+    overflow-wrap: break-word;
+    max-width: 98%;
 }
 
 .apiUsername{
