@@ -24,7 +24,7 @@ function App() {
   const [checkTokenValue, setCheckTokenValue] = useState(false)
 
   useEffect(() => {
-    CheckToken().then(val => setCheckTokenValue(val))
+    if (id && token) CheckToken().then(val => setCheckTokenValue(val))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
