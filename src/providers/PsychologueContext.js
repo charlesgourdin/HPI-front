@@ -97,8 +97,8 @@ class PsychologueProvider extends Component {
             user: 'demandeCloture',
             channel: this.channel,
             timestamp: Date.now(),
-            sender_id: this.state.userId,
-            tickets_id: this.state.ticketId
+            sender_id: 0,
+            tickets_id: 0
         })
     }
 

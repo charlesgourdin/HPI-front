@@ -50,8 +50,8 @@ class CollaborateurProvider extends Component {
                         user: 'Plateforme Psychologique', 
                         channel: this.channel,
                         timestamp: Date.now(),
-                        sender_id: '0',
-                        tickets_id: '0'
+                        sender_id: 0,
+                        tickets_id: 0
                     })
                 })
         })
@@ -63,8 +63,8 @@ class CollaborateurProvider extends Component {
             user: 'acceptCloture',
             channel: this.channel,
             timestamp: Date.now(),
-            sender_id: this.state.userId,
-            tickets_id: this.state.ticketId
+            sender_id: 0,
+            tickets_id: 0
         })
         this.setState({ chatActiv: false, discussion: [] })
         this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
