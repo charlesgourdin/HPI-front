@@ -98,6 +98,10 @@ class PsychologueProvider extends Component {
         this.setState({ formActiv: false, ticketActiv: -1, discussion: [] })
         this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
         this.putStatus('psy_online')
+        axios.put(`${this.props.endpoint}/tickets/state/${this.state.ticketActiv}`, { state: 'closed', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                // console.log(res)
+            })
     }
 
     getTicket = () => {
@@ -142,10 +146,12 @@ class PsychologueProvider extends Component {
         })
 
         this.socket.on('psychologues', object => {
+            if (this.token !== null)
             this.getPsy()
         })
 
         this.socket.on('tickets', object => {
+            if (this.token !== null)
             this.getTicket()
         })
     }

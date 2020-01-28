@@ -23,7 +23,6 @@ const FormEndCall = () => {
         <MDBCol md='6' tag='section' className='d-flex flex-column'>
           <FormComment />
           <div className="text-right mt-auto">
-            {/* <button className='secondary_button z-depth-1' onClick={() => closeTicket()}>Annuler</button> */}
             <button className='primary_button z-depth-1' onClick={() => sendForm()}>Envoyer</button>
           </div>
         </MDBCol>
