@@ -13,7 +13,6 @@ const ConversWindow = () => {
             overflowY:'scroll',
             width: '98%'
         }}>
-            {console.log(discussion)}
             {discussion.map((item, i) => {
                 return (<div className="w-75 d-flex flex-column m-2" key={i}
                     style={{ float: user === item.user ? "right" : "left" }}

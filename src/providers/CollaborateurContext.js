@@ -18,7 +18,7 @@ class CollaborateurProvider extends Component {
             sendMessage: this.sendMessage,
             userId: this.props.userInfos.id,
             userToken: this.props.userInfos.token,
-
+            discussion: []
         }
     }
 
@@ -43,7 +43,17 @@ class CollaborateurProvider extends Component {
                         else {
                             this.clientId = object
                         }
-                        // document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
+                    })
+                })
+                .then(() => {
+                    this.socket.emit('message', { 
+                        message: "Bonjour. Vous allez entrer en conversation avec un psychologue. Que peut-il faire pour vous ?", 
+                        user: 'Plateforme Psychologique', 
+                        channel: this.channel,
+                        timestamp: Date.now(),
+                        sender_id: '0',
+                        tickets_id: '0'
                     })
                 })
         })
@@ -63,7 +73,6 @@ class CollaborateurProvider extends Component {
                 timestamp: Date.now(),
                 sender_id: this.state.userId,
                 tickets_id: this.tickets_id
-
             })
         }
     }

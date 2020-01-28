@@ -31,7 +31,7 @@ class PsychologueProvider extends Component {
             sendForm: this.sendForm,
             sendMessage: this.sendMessage,
             setToken: this.setToken,
-            ticketId: ''
+            ticketId: '',
         }
     }
 
@@ -58,13 +58,25 @@ class PsychologueProvider extends Component {
     }
 
     openChat = (i, channel, ticketId) => {
-        this.setState({ chatActiv: true, ticketActiv: i, ticketId: ticketId })
+        this.collectMessages(channel)
+        this.setState({ 
+            chatActiv: true, 
+            ticketActiv: i, 
+            ticketId: ticketId, 
+        })
         this.channel = channel
     }
 
     openChannel = () => {
         this.socket.emit('waiting room', this.channel)
-        this.putStatus('psy_busy')
+        this.putStatus('psy_busy');
+    }
+
+    collectMessages = (channel) => {
+        axios.get(`${this.props.endpoint}/api/messages?chid=${channel}`)
+            .then(res => {
+                this.setState({ discussion: [...res.data] });
+            })
     }
 
     closeChat = () => {
@@ -99,7 +111,8 @@ class PsychologueProvider extends Component {
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.userId,
-                tickets_id: this.state.ticketId
+                tickets_id: this.state.ticketId,
+                role: 'psy_on'
             })
         }
     }
