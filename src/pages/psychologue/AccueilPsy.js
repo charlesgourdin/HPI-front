@@ -19,7 +19,7 @@ const AccueilPsy = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`${endpoint}/users/auth/admin`, { data })
+        axios.post(`${endpoint}/api/users/auth/admin`, { data })
             .then(res => {
                 if (res.status === 200) {
                     setToken(res.data)

@@ -34,7 +34,7 @@ class PsychologueProvider extends Component {
             sendForm: this.sendForm,
             sendMessage: this.sendMessage,
             setToken: this.setToken,
-            ticketId: ''
+            ticketId: '',
         }
     }
 
@@ -60,7 +60,12 @@ class PsychologueProvider extends Component {
     }
 
     openChat = (channel, ticketId) => {
-        this.setState({ chatActiv: true, ticketActiv: ticketId, ticketId: ticketId })
+        this.collectMessages(channel)
+        this.setState({ 
+            chatActiv: true, 
+            ticketActiv: ticketId, 
+            ticketId: ticketId, 
+        })
         this.channel = channel
     }
 
@@ -70,6 +75,13 @@ class PsychologueProvider extends Component {
         axios.put(`${this.props.endpoint}/tickets/state/${this.state.ticketActiv}`, { state: 'pending', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
+            })
+    }
+
+    collectMessages = (channel) => {
+        axios.get(`${this.props.endpoint}/api/messages?chid=${channel}`)
+            .then(res => {
+                this.setState({ discussion: [...res.data] });
             })
     }
 
@@ -105,7 +117,7 @@ class PsychologueProvider extends Component {
     }
 
     getTicket = () => {
-        axios.get(`${this.props.endpoint}/tickets/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.get(`${this.props.endpoint}/api/tickets/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 const tickets = res.data;
                 this.setState({ tickets });
@@ -129,7 +141,8 @@ class PsychologueProvider extends Component {
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.state.userId,
-                tickets_id: this.state.ticketId
+                tickets_id: this.state.ticketId,
+                role: 'psy_on'
             })
         }
     }
