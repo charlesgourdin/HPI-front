@@ -7,27 +7,30 @@ class PsychologueProvider extends Component {
         super(props)
         this.channel = '';
         this.clientId = '';
-        this.userId = localStorage.getItem('userId') || null;
         this.token = localStorage.getItem("token") || null;
         this.socket = this.props.socket;
         this.state = {
             endpoint: this.props.endpoint,
             user: localStorage.getItem("username") || 'anonyme',
+            userId: localStorage.getItem('userId') || null,
             status: 'psy_online',
             isLogged: false,
             discussion: [],
             tickets: [],
-            menuActiv: 'profil',
+            psychologues: [],
+            menuActiv: 'tickets',
             chatActiv: false,
             formActiv: false,
             ticketActiv: -1,
             changeMenu: this.changeMenu,
             putStatus: this.putStatus,
             getTicket: this.getTicket,
+            getPsy: this.getPsy,
             openChat: this.openChat,
             openChannel: this.openChannel,
             closeChat: this.closeChat,
             closeTicket: this.closeTicket,
+            goToForm: this.goToForm,
             sendForm: this.sendForm,
             sendMessage: this.sendMessage,
             setToken: this.setToken,
@@ -36,9 +39,8 @@ class PsychologueProvider extends Component {
     }
 
     setToken = (data) => {
-        this.setState({ user: data.username })
+        this.setState({ user: data.username, userId: data.id })
         this.token = data.token
-        this.userId = data.id
         //Mise à jour du status du psychologue à la connexion (psy_online)
         this.putStatus('psy_online')
 
@@ -47,7 +49,7 @@ class PsychologueProvider extends Component {
     putStatus = (status) => {
         //Mise à jour du status du psy
         this.setState({ status: status })
-        axios.put(`${this.props.endpoint}/api/users/auth/admin/${this.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/api/users/auth/admin/${this.state.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -57,11 +59,11 @@ class PsychologueProvider extends Component {
         this.setState({ menuActiv: page })
     }
 
-    openChat = (i, channel, ticketId) => {
+    openChat = (channel, ticketId) => {
         this.collectMessages(channel)
         this.setState({ 
             chatActiv: true, 
-            ticketActiv: i, 
+            ticketActiv: ticketId, 
             ticketId: ticketId, 
         })
         this.channel = channel
@@ -69,7 +71,11 @@ class PsychologueProvider extends Component {
 
     openChannel = () => {
         this.socket.emit('waiting room', this.channel)
-        this.putStatus('psy_busy');
+        this.putStatus('psy_busy')
+        axios.put(`${this.props.endpoint}/api/tickets/state/${this.state.ticketActiv}`, { state: 'pending', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                // console.log(res)
+            })
     }
 
     collectMessages = (channel) => {
@@ -86,6 +92,17 @@ class PsychologueProvider extends Component {
     }
 
     closeTicket = () => {
+        this.socket.emit('message', {
+            message: 'Demande de fermeture du ticket envoyée',
+            user: 'demandeCloture',
+            channel: this.channel,
+            timestamp: Date.now(),
+            sender_id: this.state.userId,
+            tickets_id: this.state.ticketId
+        })
+    }
+
+    goToForm = () => {
         this.setState({ chatActiv: !this.state.chatActiv, formActiv: !this.state.formActiv })
     }
 
@@ -93,6 +110,10 @@ class PsychologueProvider extends Component {
         this.setState({ formActiv: false, ticketActiv: -1, discussion: [] })
         this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
         this.putStatus('psy_online')
+        axios.put(`${this.props.endpoint}/api/tickets/state/${this.state.ticketActiv}`, { state: 'closed', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                // console.log(res)
+            })
     }
 
     getTicket = () => {
@@ -103,14 +124,23 @@ class PsychologueProvider extends Component {
             })
     }
 
+    getPsy = () => {
+        axios.get(`${this.props.endpoint}/api/users/psy/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
+            .then(res => {
+                const psychologues = res.data;
+                this.setState({ psychologues });
+            })
+    }
+
     sendMessage = (message) => {
+
         if (message.length > 0) {
             this.socket.emit('message', {
                 message: message,
                 user: this.state.user,
                 channel: this.channel,
                 timestamp: Date.now(),
-                sender_id: this.userId,
+                sender_id: this.state.userId,
                 tickets_id: this.state.ticketId,
                 role: 'psy_on'
             })
@@ -126,6 +156,16 @@ class PsychologueProvider extends Component {
             else {
                 this.clientId = object
             }
+        })
+
+        this.socket.on('psychologues', object => {
+            if (this.token !== null)
+            this.getPsy()
+        })
+
+        this.socket.on('tickets', object => {
+            if (this.token !== null)
+            this.getTicket()
         })
     }
 

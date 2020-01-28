@@ -10,9 +10,8 @@ class CollaborateurProvider extends Component {
         this.socket = this.props.socket;
         this.tickets_id = '';
         this.state = {
-            user:'anonyme',
-            chatActiv: false,
-            ticketActiv: -1,
+            user: 'anonyme',
+            chatActiv: true,
             startCollab: this.startCollab,
             closeChat: this.closeChat,
             sendMessage: this.sendMessage,
@@ -43,7 +42,6 @@ class CollaborateurProvider extends Component {
                         else {
                             this.clientId = object
                         }
-                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
                     })
                 })
                 .then(() => {
@@ -60,15 +58,25 @@ class CollaborateurProvider extends Component {
     }
 
     closeChat = () => {
-        this.setState({ chatActiv: false, ticketActiv: -1, discussion: [] })
+        this.socket.emit('message', {
+            message: 'Fermeture du ticket acceptée ',
+            user: 'acceptCloture',
+            channel: this.channel,
+            timestamp: Date.now(),
+            sender_id: this.state.userId,
+            tickets_id: this.state.ticketId
+        })
+        this.setState({ chatActiv: false, discussion: [] })
         this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
+        //penser à vider le local storage
     }
+
 
     sendMessage = (message) => {
         if (message.length > 0) {
-            this.socket.emit('message', { 
-                message: message, 
-                user: this.state.user, 
+            this.socket.emit('message', {
+                message: message,
+                user: this.state.user,
                 channel: this.channel,
                 timestamp: Date.now(),
                 sender_id: this.state.userId,

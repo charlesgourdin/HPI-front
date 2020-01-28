@@ -56,7 +56,7 @@ const ChatBoxPsy = () => {
                                 </h2>
                                 <div className='d-flex flex-column'>
                                     <button className='primary_button z-depth-1' style={{ width: '300px' }} onClick={() => { closeChat() }}>Suspendre le ticket</button>
-                                    <button className='danger_button z-depth-1' style={{ width: '300px' }} onClick={() => { closeTicket() }}>Clôturer le ticket</button>
+                                    <button className='danger_button z-depth-1' style={{ width: '300px' }} onClick={() => { closeTicket() ; validOutChat(false)}}>Demander la clôture du ticket</button>
                                     <button className='secondary_button z-depth-1' style={{ width: '300px' }} onClick={() => validOutChat(false)}>Annuler</button>
                                 </div>
                             </div>
