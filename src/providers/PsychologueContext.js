@@ -49,7 +49,7 @@ class PsychologueProvider extends Component {
     putStatus = (status) => {
         //Mise à jour du status du psy
         this.setState({ status: status })
-        axios.put(`${this.props.endpoint}/users/auth/admin/${this.state.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/api/users/auth/admin/${this.state.userId}`, { role: status }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -72,7 +72,7 @@ class PsychologueProvider extends Component {
     openChannel = () => {
         this.socket.emit('waiting room', this.channel)
         this.putStatus('psy_busy')
-        axios.put(`${this.props.endpoint}/tickets/state/${this.state.ticketActiv}`, { state: 'pending', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/api/tickets/state/${this.state.ticketActiv}`, { state: 'pending', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -110,7 +110,7 @@ class PsychologueProvider extends Component {
         this.setState({ formActiv: false, ticketActiv: -1, discussion: [] })
         this.socket.emit('leave room', { channel: this.channel, clientId: this.clientId })
         this.putStatus('psy_online')
-        axios.put(`${this.props.endpoint}/tickets/state/${this.state.ticketActiv}`, { state: 'closed', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.put(`${this.props.endpoint}/api/tickets/state/${this.state.ticketActiv}`, { state: 'closed', psy_id: this.state.userId }, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 // console.log(res)
             })
@@ -125,7 +125,7 @@ class PsychologueProvider extends Component {
     }
 
     getPsy = () => {
-        axios.get(`${this.props.endpoint}/users/psy/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
+        axios.get(`${this.props.endpoint}/api/users/psy/all`, { headers: { "Authorization": `Bearer ${this.token}` } })
             .then(res => {
                 const psychologues = res.data;
                 this.setState({ psychologues });
