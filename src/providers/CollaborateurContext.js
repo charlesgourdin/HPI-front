@@ -42,7 +42,6 @@ class CollaborateurProvider extends Component {
                         else {
                             this.clientId = object
                         }
-                        document.getElementById("to_autoscroll").scrollBy(0, 10000)
                     })
                 })
                 .then(() => {
