@@ -11,7 +11,6 @@ const PostMessage = () => {
     return (
         <div className='w-100 px-4 pb-2 mt-3' style={{
             height: '25%',
-            // border:'1px black solid'
         }}>
                 <form className='w-100 h-100 d-flex flex-column justify-content-around align-items-end' autoComplete='off'> 
                     <input
@@ -40,10 +39,6 @@ const PostMessage = () => {
                         Envoyer
                     </button>
                 </form>
-
-
-
-
         </div >
     )
 }
