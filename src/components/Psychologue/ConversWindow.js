@@ -26,7 +26,7 @@ const ConversWindow = () => {
                     >
                         <p className="apiUsername"
                             style={{ alignSelf: user === item.user ? "flex-end" : "flex-start" }}
-                        >{item.user}</p>
+                        >{(!item.role.includes('psy')) ? item.pseudo : item.user}</p>
                         <div className={user === item.user ? "messageBlocA" : "messageBlocB"}>
                             <p className="apiMessage">{item.message}</p>
                             <Moment format="DD/MM/YYYY - HH:mm" style={{ float: 'right', fontSize: '12px' }}>{item.timestamp}</Moment>
