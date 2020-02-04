@@ -18,7 +18,7 @@ class PsychologueProvider extends Component {
             discussion: [],
             tickets: [],
             psychologues: [],
-            menuActiv: 'tickets',
+            menuActiv: 'profile',
             chatActiv: false,
             formActiv: false,
             ticketActiv: -1,
