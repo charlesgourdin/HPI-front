@@ -22,7 +22,7 @@ const Accueil = () => {
                     backgroundColor: '#034ACF',
                     borderRadius: '20px'
                 }}>
-                    <p className='h5 text-center mb-4 white-text'>Entrez un pseudo ou lancer la conversation en anonyme</p>
+                    <p className='h5 text-center mb-4 white-text'>Entrez un pseudo ou lancez la conversation en anonyme</p>
                     <label htmlFor='defaultFormLoginEmailEx' className='white-text'>
                         Votre pseudo
                   </label>
